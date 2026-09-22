@@ -14,10 +14,78 @@
     <script type="module" src="/src/main.js"></script>
   </head>
 
-  <body>
-    <main id="app">
-      <h1>Jonathan Mesquita</h1>
-      <p>Developer • Technology • Product</p>
+ <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div id="app">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Jonathan Mesquita — Home">
+        JM<span>.</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a
+        class="github-link"
+        href="https://github.com/jonathanmesquita"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub ↗
+      </a>
+    </header>
+
+    <main id="main-content">
+      <section class="hero">
+        <div class="hero-meta">
+          <span>Full-stack developer</span>
+
+          <span class="hero-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            Open to opportunities
+          </span>
+        </div>
+
+        <div class="hero-content">
+          <h1>
+            Support taught me
+            <span>where software breaks.</span>
+          </h1>
+
+          <p class="hero-statement">
+            Development is how I fix it.
+          </p>
+        </div>
+
+        <div class="hero-footer">
+          <p class="hero-description">
+            I build useful web products with JavaScript, Node.js, SQL and APIs,
+            combining technical experience with practical problem solving.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#work">
+              Selected work ↓
+            </a>
+
+            <a class="button button-secondary" href="#about">
+              About me
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-index" aria-hidden="true">
+          <span>JM / 2026</span>
+          <span>São Paulo — BR</span>
+        </div>
+      </section>
     </main>
-  </body>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
