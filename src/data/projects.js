@@ -1,11 +1,10 @@
 export const projects = [
   {
     id: "01",
-    slug: "arriba-platform",
     title: "Arriba Platform",
     category: "Full-stack platform",
-    status: "Live",
     year: "2025 — 2026",
+    status: "Live",
     description:
       "A support platform built from real operational problems involving documentation, automation, data and technical support.",
     stack: [
@@ -15,17 +14,15 @@ export const projects = [
       "REST API",
       "SQL"
     ],
-    liveUrl: "https://arriba.jm.dev.br",
-    caseUrl: "#",
-    featured: true
+    liveUrl: "https://arriba.jm.dev.br"
   },
+
   {
     id: "02",
-    slug: "focus-jm",
     title: "Focus JM",
     category: "Productivity / Notion",
-    status: "Building",
     year: "2026",
+    status: "Building",
     description:
       "A distraction-free Pomodoro study timer connected to my Notion workflow.",
     stack: [
@@ -33,8 +30,6 @@ export const projects = [
       "Node.js",
       "Notion API"
     ],
-    liveUrl: null,
-    caseUrl: "#",
-    featured: false
+    liveUrl: null
   }
 ];

@@ -1,62 +1,35 @@
-import "./styles/tokens.css";
-import "./styles/base.css";
-import "./styles/components.css";
+export const projects = [
+  {
+    id: "01",
+    title: "Arriba Platform",
+    category: "Full-stack platform",
+    year: "2025 — 2026",
+    status: "Live",
+    description:
+      "A support platform built from real operational problems involving documentation, automation, data and technical support.",
+    stack: [
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "REST API",
+      "SQL"
+    ],
+    liveUrl: "https://arriba.jm.dev.br"
+  },
 
-import { projects } from "./data/projects.js";
-
-const projectsContainer = document.querySelector("#projects");
-
-function renderProjects() {
-  projectsContainer.innerHTML = projects
-    .map(
-      (project) => `
-        <article class="project">
-          <div class="project-index">
-            ${project.id}
-          </div>
-
-          <div class="project-content">
-            <div class="project-meta">
-              <span>${project.category}</span>
-              <span>${project.year}</span>
-            </div>
-
-            <h3>${project.title}</h3>
-
-            <p class="project-description">
-              ${project.description}
-            </p>
-
-            <ul class="project-stack">
-              ${project.stack
-                .map((technology) => `<li>${technology}</li>`)
-                .join("")}
-            </ul>
-          </div>
-
-          <div class="project-actions">
-            <span class="project-status">
-              ${project.status}
-            </span>
-
-            ${
-              project.liveUrl
-                ? `
-                  <a
-                    href="${project.liveUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live ↗
-                  </a>
-                `
-                : ""
-            }
-          </div>
-        </article>
-      `
-    )
-    .join("");
-}
-
-renderProjects();
+  {
+    id: "02",
+    title: "Focus JM",
+    category: "Productivity / Notion",
+    year: "2026",
+    status: "Building",
+    description:
+      "A distraction-free Pomodoro study timer connected to my Notion workflow.",
+    stack: [
+      "JavaScript",
+      "Node.js",
+      "Notion API"
+    ],
+    liveUrl: null
+  }
+];

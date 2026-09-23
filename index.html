@@ -1,107 +1,74 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+import "./styles/tokens.css";
+import "./styles/base.css";
+import "./styles/components.css";
 
-    <meta
-      name="description"
-      content="Portfólio profissional de Jonathan Mesquita — desenvolvimento, tecnologia e projetos."
-    />
+import { projects } from "./data/projects.js";
 
-    <title>Jonathan Mesquita | Developer</title>
+const projectsContainer = document.querySelector("#projects");
 
-    <script type="module" src="/src/main.js"></script>
-  </head>
+function renderProjects() {
+  if (!projectsContainer) return;
 
- <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-
-  <div id="app">
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="Jonathan Mesquita — Home">
-        JM<span>.</span>
-      </a>
-
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <a
-        class="github-link"
-        href="https://github.com/jonathanmesquita"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub ↗
-      </a>
-    </header>
-
-    <main id="main-content">
-      <section class="hero">
-        <div class="hero-meta">
-          <span>Full-stack developer</span>
-
-          <span class="hero-status">
-            <span class="status-dot" aria-hidden="true"></span>
-            Open to opportunities
-          </span>
-        </div>
-
-        <div class="hero-content">
-          <h1>
-  <span class="hero-line hero-line-primary">
-    Support taught me
-  </span>
-
-  <span class="hero-line hero-line-accent">
-    where software breaks.
-  </span>
-</h1>
-
-          <p class="hero-statement">
-            Development is how I fix it.
-          </p>
-        </div>
-
-        <div class="hero-footer">
-          <p class="hero-description">
-            I build useful web products with JavaScript, Node.js, SQL and APIs,
-            combining technical experience with practical problem solving.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button button-primary" href="#work">
-              Selected work ↓
-            </a>
-
-            <a class="button button-secondary" href="#about">
-              About me
-            </a>
+  projectsContainer.innerHTML = projects
+    .map(
+      (project) => `
+        <article class="project">
+          <div class="project-index">
+            ${project.id}
           </div>
-        </div>
 
-        <div class="hero-index" aria-hidden="true">
-          <span>JM / 2026</span>
-          <span>São Paulo — BR</span>
-        </div>
-      </section>
-      <section class="work" id="work">
-  <header class="section-header">
-    <span class="section-number">01</span>
+          <div class="project-content">
+            <div class="project-meta">
+              <span>${project.category}</span>
+              <span>${project.year}</span>
+            </div>
 
-    <h2>Selected Work</h2>
+            <h3>${project.title}</h3>
 
-    <span class="section-count">01 — 02</span>
-  </header>
+            <p class="project-description">
+              ${project.description}
+            </p>
 
-  <div class="projects" id="projects"></div>
-</section>
-    </main>
-  </div>
+            <ul class="project-stack">
+              ${project.stack
+                .map((technology) => `<li>${technology}</li>`)
+                .join("")}
+            </ul>
+          </div>
 
-  <script type="module" src="/src/main.js"></script>
-</body>
-</html>
+          <div class="project-actions">
+            <span class="project-status">
+              <span
+                class="project-status-dot"
+                aria-hidden="true"
+              ></span>
+
+              ${project.status}
+            </span>
+
+            ${
+              project.liveUrl
+                ? `
+                  <a
+                    class="project-link"
+                    href="${project.liveUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View project ↗
+                  </a>
+                `
+                : `
+                  <span class="project-coming">
+                    In development
+                  </span>
+                `
+            }
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
+renderProjects();
