@@ -1,74 +1,157 @@
-import "./styles/tokens.css";
-import "./styles/base.css";
-import "./styles/components.css";
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-import { projects } from "./data/projects.js";
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
-const projectsContainer = document.querySelector("#projects");
+    <meta
+      name="description"
+      content="Jonathan Mesquita — developer portfolio focused on JavaScript, Node.js, SQL, APIs and practical web products."
+    />
 
-function renderProjects() {
-  if (!projectsContainer) return;
+    <title>Jonathan Mesquita | Developer</title>
 
-  projectsContainer.innerHTML = projects
-    .map(
-      (project) => `
-        <article class="project">
-          <div class="project-index">
-            ${project.id}
-          </div>
+    <script
+      type="module"
+      src="/src/main.js"
+    ></script>
+  </head>
 
-          <div class="project-content">
-            <div class="project-meta">
-              <span>${project.category}</span>
-              <span>${project.year}</span>
-            </div>
+  <body>
+    <a
+      class="skip-link"
+      href="#main-content"
+    >
+      Skip to content
+    </a>
 
-            <h3>${project.title}</h3>
+    <div id="app">
+      <header class="site-header">
+        <a
+          class="brand"
+          href="/"
+          aria-label="Jonathan Mesquita — Home"
+        >
+          JM<span>.</span>
+        </a>
 
-            <p class="project-description">
-              ${project.description}
-            </p>
+        <nav
+          class="main-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-            <ul class="project-stack">
-              ${project.stack
-                .map((technology) => `<li>${technology}</li>`)
-                .join("")}
-            </ul>
-          </div>
+        <a
+          class="github-link"
+          href="https://github.com/jonathanmesquita"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub ↗
+        </a>
+      </header>
 
-          <div class="project-actions">
-            <span class="project-status">
+      <main id="main-content">
+
+        <!-- Hero -->
+
+        <section class="hero">
+          <div class="hero-meta">
+            <span>Full-stack developer</span>
+
+            <span class="hero-status">
               <span
-                class="project-status-dot"
+                class="status-dot"
                 aria-hidden="true"
               ></span>
 
-              ${project.status}
+              Open to opportunities
+            </span>
+          </div>
+
+          <div class="hero-content">
+            <h1>
+              <span class="hero-line hero-line-primary">
+                Support taught me
+              </span>
+
+              <span class="hero-line hero-line-accent">
+                where software breaks.
+              </span>
+            </h1>
+
+            <p class="hero-statement">
+              Development is how I fix it.
+            </p>
+          </div>
+
+          <div class="hero-footer">
+            <p class="hero-description">
+              I build useful web products with JavaScript,
+              Node.js, SQL and APIs, combining technical
+              experience with practical problem solving.
+            </p>
+
+            <div class="hero-actions">
+              <a
+                class="button button-primary"
+                href="#work"
+              >
+                Selected work ↓
+              </a>
+
+              <a
+                class="button button-secondary"
+                href="#about"
+              >
+                About me
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="hero-index"
+            aria-hidden="true"
+          >
+            <span>JM / 2026</span>
+            <span>São Paulo — BR</span>
+          </div>
+        </section>
+
+        <!-- Selected Work -->
+
+        <section
+          class="work"
+          id="work"
+        >
+          <header class="section-header">
+            <span class="section-number">
+              01
             </span>
 
-            ${
-              project.liveUrl
-                ? `
-                  <a
-                    class="project-link"
-                    href="${project.liveUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View project ↗
-                  </a>
-                `
-                : `
-                  <span class="project-coming">
-                    In development
-                  </span>
-                `
-            }
-          </div>
-        </article>
-      `
-    )
-    .join("");
-}
+            <h2>
+              Selected Work
+            </h2>
 
-renderProjects();
+            <span class="section-count">
+              01 — 02
+            </span>
+          </header>
+
+          <div
+            class="projects"
+            id="projects"
+          ></div>
+        </section>
+
+      </main>
+    </div>
+  </body>
+</html>

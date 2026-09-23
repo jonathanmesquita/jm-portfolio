@@ -16,7 +16,6 @@ export const projects = [
     ],
     liveUrl: "https://arriba.jm.dev.br"
   },
-
   {
     id: "02",
     title: "Focus JM",
