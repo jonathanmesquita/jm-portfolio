@@ -5,6 +5,7 @@ export const projects = [
     category: "Full-stack platform",
     year: "2025 — 2026",
     status: "Live",
+    featured: true,
     description:
       "A support platform built from real operational problems involving documentation, automation, data and technical support.",
     stack: [
@@ -22,6 +23,7 @@ export const projects = [
     category: "Productivity / Notion",
     year: "2026",
     status: "Building",
+    featured: false,
     description:
       "A distraction-free Pomodoro study timer connected to my Notion workflow.",
     stack: [

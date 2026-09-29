@@ -12,12 +12,24 @@ function renderProjects() {
   projectsContainer.innerHTML = projects
     .map(
       (project) => `
-        <article class="project">
+        <article
+          class="project ${project.featured ? "project-featured" : ""}"
+        >
           <div class="project-index">
             ${project.id}
           </div>
 
           <div class="project-content">
+            ${
+              project.featured
+                ? `
+                  <span class="project-featured-label">
+                    Featured project
+                  </span>
+                `
+                : ""
+            }
+
             <div class="project-meta">
               <span>${project.category}</span>
               <span>${project.year}</span>
@@ -31,7 +43,11 @@ function renderProjects() {
 
             <ul class="project-stack">
               ${project.stack
-                .map((technology) => `<li>${technology}</li>`)
+                .map(
+                  (technology) => `
+                    <li>${technology}</li>
+                  `
+                )
                 .join("")}
             </ul>
           </div>
