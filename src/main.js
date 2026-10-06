@@ -7,6 +7,7 @@ import { capabilities } from "./data/capabilities.js";
 
 const projectsContainer = document.querySelector("#projects");
 const capabilitiesContainer = document.querySelector("#capabilities-list");
+const backToTopButton = document.querySelector("#back-to-top");
 
 function renderProjects() {
   if (!projectsContainer) return;
@@ -150,5 +151,53 @@ function renderCapabilities() {
     .join("");
 }
 
+function updateBackToTopButton() {
+  if (!backToTopButton) return;
+
+  const shouldShowButton = window.scrollY > 500;
+
+  backToTopButton.classList.toggle(
+    "is-visible",
+    shouldShowButton
+  );
+
+  backToTopButton.setAttribute(
+    "aria-hidden",
+    String(!shouldShowButton)
+  );
+
+  backToTopButton.tabIndex = shouldShowButton
+    ? 0
+    : -1;
+}
+
+function scrollToTop() {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  window.scrollTo({
+    top: 0,
+    behavior: prefersReducedMotion
+      ? "auto"
+      : "smooth"
+  });
+}
+
 renderProjects();
 renderCapabilities();
+
+if (backToTopButton) {
+  window.addEventListener(
+    "scroll",
+    updateBackToTopButton,
+    { passive: true }
+  );
+
+  backToTopButton.addEventListener(
+    "click",
+    scrollToTop
+  );
+
+  updateBackToTopButton();
+}
