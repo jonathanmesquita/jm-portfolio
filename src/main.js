@@ -31,11 +31,18 @@ function renderProjects() {
             }
 
             <div class="project-meta">
-              <span>${project.category}</span>
-              <span>${project.year}</span>
+              <span>
+                ${project.category}
+              </span>
+
+              <span>
+                ${project.year}
+              </span>
             </div>
 
-            <h3>${project.title}</h3>
+            <h3>
+              ${project.title}
+            </h3>
 
             <p class="project-description">
               ${project.description}
@@ -45,7 +52,9 @@ function renderProjects() {
               ${project.stack
                 .map(
                   (technology) => `
-                    <li>${technology}</li>
+                    <li>
+                      ${technology}
+                    </li>
                   `
                 )
                 .join("")}
