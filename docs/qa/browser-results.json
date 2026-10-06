@@ -1,0 +1,178 @@
+{
+  "sizes": [
+    {
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "width": 375,
+      "scrollWidth": 375
+    },
+    {
+      "width": 420,
+      "scrollWidth": 420
+    },
+    {
+      "width": 720,
+      "scrollWidth": 720
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "width": 900,
+      "scrollWidth": 900
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "axe": [
+    {
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "assets": [
+    {
+      "asset": "favicon.svg",
+      "status": 200
+    },
+    {
+      "asset": "favicon-32.png",
+      "status": 200
+    },
+    {
+      "asset": "apple-touch-icon.png",
+      "status": 200
+    },
+    {
+      "asset": "og-image.png",
+      "status": 200
+    },
+    {
+      "asset": "robots.txt",
+      "status": 200
+    },
+    {
+      "asset": "sitemap.xml",
+      "status": 200
+    }
+  ],
+  "links": [
+    {
+      "href": "#main-content",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "/",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#work",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#about",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#experience",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#capabilities",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#contact",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "https://github.com/jonathanmesquita",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#work",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "#about",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "https://arriba.jm.dev.br",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "mailto:jonathan-mesquita@live.com",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "https://www.linkedin.com/in/jonathanmesquita",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "https://github.com/jonathanmesquita",
+      "validTarget": true,
+      "safeBlank": true
+    },
+    {
+      "href": "https://arriba.jm.dev.br",
+      "validTarget": true,
+      "safeBlank": true
+    }
+  ],
+  "errors": [],
+  "skipVisible": true,
+  "skipFocus": "main-content",
+  "reducedMotion": "auto",
+  "metadata": {
+    "h1": 1,
+    "lang": "en",
+    "canonical": "https://jm.dev.br/",
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jonathan Mesquita",
+      "url": "https://jm.dev.br/",
+      "sameAs": [
+        "https://github.com/jonathanmesquita",
+        "https://www.linkedin.com/in/jonathanmesquita"
+      ],
+      "knowsAbout": [
+        "JavaScript",
+        "Node.js",
+        "SQL",
+        "REST APIs",
+        "Web Development"
+      ]
+    },
+    "ogImage": "https://jm.dev.br/og-image.png"
+  }
+}

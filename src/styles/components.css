@@ -49,7 +49,7 @@
 }
 
 .brand span {
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 }
 
 .main-nav {
@@ -197,7 +197,7 @@
     1.25rem
   );
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 }
 
 .hero-footer {
@@ -450,7 +450,7 @@
 
   margin-left: 0.5rem;
 
-  color: var(--color-titanium);
+  color: var(--color-muted-text);
 }
 
 
@@ -475,7 +475,7 @@
   align-items: center;
   gap: 0.5rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -506,7 +506,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
 
-  color: var(--color-titanium);
+  color: var(--color-muted-text);
 
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -547,7 +547,7 @@
 }
 
 .project-featured .project-status {
-  color: var(--color-clay);
+  color: var(--color-clay-on-ink);
 }
 
 .project-featured .project-status-dot {
@@ -566,7 +566,7 @@
   font-family: var(--font-mono);
   font-size: 0.65rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-on-ink);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -611,7 +611,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -758,7 +758,7 @@
 
   font-size: 0.7rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -813,7 +813,7 @@
 
   margin-left: 0.5rem;
 
-  color: var(--color-titanium);
+  color: var(--color-muted-text);
 }
 
 .experience-meta {
@@ -871,7 +871,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -945,7 +945,7 @@
 
   font-size: 0.65rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1002,7 +1002,7 @@
 
   margin-left: 0.5rem;
 
-  color: var(--color-titanium);
+  color: var(--color-muted-text);
 }
 
 .capability-proof {
@@ -1018,7 +1018,7 @@
 }
 
 .capability-proof span {
-  color: var(--color-titanium);
+  color: var(--color-muted-text);
 
   text-transform: uppercase;
   letter-spacing: 0.07em;
@@ -1069,7 +1069,7 @@
   font-family: var(--font-mono);
   font-size: 0.7rem;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1134,7 +1134,7 @@
 
   font-weight: 500;
 
-  color: var(--color-clay);
+  color: var(--color-clay-text);
 
   transition:
     color 180ms ease,
@@ -1266,7 +1266,7 @@
   }
 
   .project-link:hover {
-    color: var(--color-clay);
+    color: var(--color-clay-text);
   }
 
   .project-featured:hover {
@@ -1307,7 +1307,7 @@
   }
 
   .contact-links a:hover span:last-child {
-    color: var(--color-clay);
+    color: var(--color-clay-text);
   }
 }
 
@@ -1672,3 +1672,13 @@
     animation-iteration-count: 1 !important;
   }
 }
+/* Comfortable keyboard and touch targets without changing section layout. */
+.main-nav a, .github-link, .project-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+.project-featured :focus-visible {
+  outline-color: var(--color-sand);
+}
+.contact-email { overflow-wrap: anywhere; }

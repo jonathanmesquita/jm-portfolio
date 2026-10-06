@@ -4,9 +4,14 @@
   --color-ink: #1b1d1a;
   --color-sand: #d8cfc2;
   --color-clay: #a66a4c;
-  --color-moss: #65735b;
+  --color-moss: #5f6d55;
   --color-titanium: #8e9491;
   --color-digital: #6e9fa3;
+
+  /* Accessible text shades preserve the Tech Boho palette. */
+  --color-clay-text: #8f573c;
+  --color-clay-on-ink: #c48d6e;
+  --color-muted-text: #626965;
 
   /* Typography */
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;

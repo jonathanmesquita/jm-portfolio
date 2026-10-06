@@ -2,7 +2,7 @@
 
 Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-Current version: **v0.7.0**
+Current version: **v0.8.0**
 
 Last update: **2026.10.05**
 
@@ -172,10 +172,10 @@ jm-portfolio/
 - `v0.5.0` — Capabilities
 - `v0.6.0` — Contact
 - `v0.7.0` — SEO and accessibility baseline
+- `v0.8.0` — QA, contrast fixes, favicon, social preview, robots and sitemap
 
 ## Roadmap
 
-- `v0.8.0` — QA, Lighthouse, responsive review and performance
 - `v0.9.0` — Vercel preview and production preparation
 - `v1.0.0` — Production release at `jm.dev.br`
 
@@ -183,4 +183,9 @@ A dedicated Lab section is intentionally postponed until there are experiments s
 
 ## Status
 
-🟡 Production preparation — **v0.7.0**
+🟡 Production preparation — **v0.8.0**
+## QA v0.8.0
+
+Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
+
+See [QA report](docs/QA-v0.8.0.md) for evidence, limitations and preview checks.
