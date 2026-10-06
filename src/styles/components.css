@@ -278,16 +278,8 @@
 
 
 /* ==============================
-   Selected Work
+   Shared Section Header
    ============================== */
-
-.work {
-  padding-block: clamp(
-    5rem,
-    10vw,
-    10rem
-  );
-}
 
 .section-header {
   display: grid;
@@ -328,6 +320,19 @@
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+
+/* ==============================
+   Selected Work
+   ============================== */
+
+.work {
+  padding-block: clamp(
+    5rem,
+    10vw,
+    10rem
+  );
 }
 
 .projects {
@@ -829,6 +834,204 @@
 
 
 /* ==============================
+   Capabilities
+   ============================== */
+
+.capabilities {
+  padding-block: clamp(
+    5rem,
+    10vw,
+    10rem
+  );
+}
+
+.capabilities-intro {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.5fr)
+    minmax(0, 1fr);
+
+  gap: clamp(
+    2rem,
+    6vw,
+    6rem
+  );
+
+  padding-block: clamp(
+    3rem,
+    6vw,
+    5rem
+  );
+}
+
+.capabilities-kicker {
+  margin: 0;
+
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+
+  color: var(--color-clay);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.capabilities-statement {
+  max-width: 16ch;
+
+  margin: 0;
+
+  font-size: clamp(
+    2rem,
+    4vw,
+    4.5rem
+  );
+
+  font-weight: 500;
+
+  line-height: 1;
+  letter-spacing: -0.045em;
+
+  color: var(--color-ink);
+}
+
+.capabilities-list {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.capability {
+  display: grid;
+
+  grid-template-columns:
+    3rem
+    minmax(0, 1fr)
+    14rem;
+
+  gap: clamp(
+    2rem,
+    5vw,
+    5rem
+  );
+
+  padding-block: clamp(
+    2.5rem,
+    5vw,
+    4rem
+  );
+
+  border-top: 1px solid var(--border-color);
+
+  transition:
+    background 180ms ease,
+    padding-inline 180ms ease;
+}
+
+.capability-index,
+.capability-label,
+.capability-skills,
+.capability-proof {
+  font-family: var(--font-mono);
+}
+
+.capability-index {
+  font-size: 0.7rem;
+
+  color: var(--color-moss);
+}
+
+.capability-label {
+  margin-bottom: var(--space-xs);
+
+  font-size: 0.65rem;
+
+  color: var(--color-clay);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.capability-main h3 {
+  margin-bottom: var(--space-md);
+
+  font-size: clamp(
+    2rem,
+    4.5vw,
+    4.5rem
+  );
+
+  font-weight: 500;
+
+  line-height: 1;
+  letter-spacing: -0.045em;
+
+  transition: color 180ms ease;
+}
+
+.capability-description {
+  max-width: 42rem;
+
+  margin: 0;
+
+  line-height: 1.7;
+
+  color: var(--color-ink);
+}
+
+.capability-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  padding: 0;
+
+  margin:
+    var(--space-md)
+    0
+    0;
+
+  list-style: none;
+
+  font-size: 0.65rem;
+
+  color: var(--color-moss);
+}
+
+.capability-skills li:not(:last-child)::after {
+  content: " / ";
+
+  margin-left: 0.5rem;
+
+  color: var(--color-titanium);
+}
+
+.capability-proof {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 0.4rem;
+
+  font-size: 0.65rem;
+
+  text-align: right;
+}
+
+.capability-proof span {
+  color: var(--color-titanium);
+
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.capability-proof strong {
+  font-weight: 500;
+
+  color: var(--color-moss);
+}
+
+
+/* ==============================
    Site Meta
    ============================== */
 
@@ -909,6 +1112,21 @@
   .project-featured:hover h3 {
     color: var(--color-sand);
   }
+
+  .capability:hover {
+    padding-inline: 1rem;
+
+    background: rgba(
+      216,
+      207,
+      194,
+      0.22
+    );
+  }
+
+  .capability:hover h3 {
+    color: var(--color-moss);
+  }
 }
 
 
@@ -967,6 +1185,30 @@
 
     text-align: left;
   }
+
+  .capabilities-intro {
+    grid-template-columns: 1fr;
+
+    gap: var(--space-md);
+  }
+
+  .capabilities-statement {
+    max-width: 18ch;
+  }
+
+  .capability {
+    grid-template-columns:
+      2rem
+      minmax(0, 1fr);
+  }
+
+  .capability-proof {
+    grid-column: 2;
+
+    align-items: flex-start;
+
+    text-align: left;
+  }
 }
 
 
@@ -997,9 +1239,13 @@
     grid-column: 1 / -1;
     grid-row: 2;
 
-    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 
     width: 100%;
+
+    gap: 0.75rem 1rem;
 
     padding-top: var(--space-sm);
 
@@ -1107,6 +1353,26 @@
     text-align: left;
   }
 
+  .capabilities-intro {
+    padding-block: var(--space-lg);
+  }
+
+  .capability {
+    grid-template-columns: 1fr;
+
+    gap: var(--space-sm);
+  }
+
+  .capability-proof {
+    grid-column: auto;
+
+    align-items: flex-start;
+
+    margin-top: var(--space-sm);
+
+    text-align: left;
+  }
+
   .site-meta {
     flex-direction: column;
     align-items: flex-start;
@@ -1122,8 +1388,6 @@
 
 @media (max-width: 420px) {
   .main-nav {
-    gap: var(--space-sm);
-
     font-size: 0.8rem;
   }
 
@@ -1158,6 +1422,14 @@
       2.5rem,
       13vw,
       4rem
+    );
+  }
+
+  .capabilities-statement {
+    font-size: clamp(
+      2rem,
+      11vw,
+      3.5rem
     );
   }
 }

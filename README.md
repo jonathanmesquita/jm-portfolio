@@ -1,40 +1,126 @@
 # 💼 jm.dev.br — Portfolio
 
-Portfólio profissional de **Jonathan Mesquita**, criado para apresentar projetos, experiência, habilidades técnicas e estudos em desenvolvimento de software.
+Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-## Objetivo
+Current version: **v0.5.0**
 
-Centralizar a presença profissional em `jm.dev.br` e organizar projetos independentes em subdomínios, mantendo cada aplicação isolada e implantável sem afetar as demais.
+Last update: **2026.10.05**
 
-## Estrutura planejada
+## Objective
 
-- `/` — Home
-- `/work` — Projetos e case studies
-- `/about` — Sobre
-- `/experience` — Experiência profissional
-- `/lab` — Estudos, experimentos e pequenos projetos
-- `/resume` — Currículo
-- `/contact` — Contato
+Centralize my professional presence at `jm.dev.br` and organize independent projects through subdomains, keeping each application isolated and independently deployable.
 
-### Projetos
+## Current sections
 
-- Arriba Platform — `arriba.jm.dev.br`
-- Focus JM — `focus.jm.dev.br`
-- Diet App — `diet.jm.dev.br`
-- App Infantil — `learn.jm.dev.br`
-- TEA | Rede de Apoio — `rede.jm.dev.br`
+- Hero
+- Selected Work
+- About
+- Experience
+- Capabilities
 
-## Direção visual
+## Selected projects
 
-Minimalismo **Tech Boho**: base neutra e aconchegante, elementos orgânicos e pequenos acentos tecnológicos.
+### Arriba Platform
 
-## Stack inicial
+Full-stack support platform based on real operational problems.
 
-- HTML semântico
-- CSS moderno
+`arriba.jm.dev.br`
+
+Stack:
+
+- JavaScript
+- Node.js
+- Express
+- REST APIs
+- SQL
+
+### Focus JM
+
+Minimal Pomodoro study application designed to integrate with a Notion workflow.
+
+Status: Building.
+
+## Capabilities
+
+### Front-end
+
+- HTML
+- CSS
+- JavaScript
+- Responsive Design
+- Accessibility
+- Vite
+
+### Back-end & APIs
+
+- Node.js
+- Express
+- REST APIs
+- JSON
+- Web Services
+- Integrations
+
+### Data & Systems
+
+- SQL
+- PostgreSQL
+- T-SQL
+- ERP
+- CNAB 240/400
+- Logs
+
+### Delivery
+
+- Git
+- GitHub
+- Vercel
+- Render
+- Cloudflare
+- DNS
+
+## Visual direction
+
+Minimal **Tech Boho** design system combining warm organic colors with restrained technical elements.
+
+Core principles:
+
+- clarity before decoration;
+- strong typography;
+- generous whitespace;
+- subtle interaction;
+- mobile-first responsiveness;
+- accessibility;
+- projects and evidence before tool lists.
+
+## Stack
+
+- Semantic HTML
+- Modern CSS
 - JavaScript ES Modules
 - Vite
 
-## Status
+## Planned roadmap
 
-🟡 Em planejamento e construção.
+- `v0.6.0` — Contact / professional links
+- `v0.7.0` — Lab
+- `v0.8.0` — QA / accessibility / SEO / performance
+- `v0.9.0` — Vercel preview and production preparation
+- `v1.0.0` — Production release at `jm.dev.br`
+
+## Project structure
+
+```text
+jm-portfolio/
+├── docs/
+├── src/
+│   ├── data/
+│   │   ├── capabilities.js
+│   │   └── projects.js
+│   ├── styles/
+│   │   ├── base.css
+│   │   ├── components.css
+│   │   └── tokens.css
+│   └── main.js
+├── index.html
+├── package.json
+└── README.md

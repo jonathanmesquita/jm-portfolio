@@ -3,8 +3,10 @@ import "./styles/base.css";
 import "./styles/components.css";
 
 import { projects } from "./data/projects.js";
+import { capabilities } from "./data/capabilities.js";
 
 const projectsContainer = document.querySelector("#projects");
+const capabilitiesContainer = document.querySelector("#capabilities-list");
 
 function renderProjects() {
   if (!projectsContainer) return;
@@ -96,4 +98,57 @@ function renderProjects() {
     .join("");
 }
 
+function renderCapabilities() {
+  if (!capabilitiesContainer) return;
+
+  capabilitiesContainer.innerHTML = capabilities
+    .map(
+      (capability) => `
+        <article class="capability">
+          <div class="capability-index">
+            ${capability.id}
+          </div>
+
+          <div class="capability-main">
+            <p class="capability-label">
+              ${capability.label}
+            </p>
+
+            <h3>
+              ${capability.title}
+            </h3>
+
+            <p class="capability-description">
+              ${capability.description}
+            </p>
+
+            <ul class="capability-skills">
+              ${capability.skills
+                .map(
+                  (skill) => `
+                    <li>
+                      ${skill}
+                    </li>
+                  `
+                )
+                .join("")}
+            </ul>
+          </div>
+
+          <div class="capability-proof">
+            <span>
+              Applied in
+            </span>
+
+            <strong>
+              ${capability.proof}
+            </strong>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
 renderProjects();
+renderCapabilities();
