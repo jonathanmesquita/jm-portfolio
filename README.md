@@ -2,7 +2,7 @@
 
 Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-Current version: **v0.6.0**
+Current version: **v0.7.0**
 
 Last update: **2026.10.05**
 
@@ -23,7 +23,9 @@ Centralize my professional presence at `jm.dev.br` and organize independent proj
 
 ### Arriba Platform
 
-Full-stack support platform based on real operational problems.
+Full-stack support platform based on real operational problems involving documentation, automation, data and technical support.
+
+Live project:
 
 `arriba.jm.dev.br`
 
@@ -40,6 +42,12 @@ Stack:
 Minimal Pomodoro study application designed to integrate with a Notion workflow.
 
 Status: Building.
+
+Stack:
+
+- JavaScript
+- Node.js
+- Notion API
 
 ## Capabilities
 
@@ -97,6 +105,23 @@ São Paulo — Brazil
 
 Available for remote software development opportunities.
 
+## SEO and accessibility
+
+The portfolio currently includes:
+
+- semantic HTML;
+- descriptive page title;
+- meta description;
+- canonical URL;
+- Open Graph metadata;
+- Twitter social metadata;
+- Schema.org structured data;
+- keyboard focus styles;
+- skip-to-content navigation;
+- reduced-motion support;
+- responsive layouts;
+- semantic section structure.
+
 ## Visual direction
 
 Minimal **Tech Boho** design system combining warm organic colors with restrained technical elements.
@@ -107,7 +132,7 @@ Core principles:
 - strong typography;
 - generous whitespace;
 - subtle interaction;
-- mobile-first responsiveness;
+- responsive design;
 - accessibility;
 - projects and evidence before tool lists.
 
@@ -117,13 +142,6 @@ Core principles:
 - Modern CSS
 - JavaScript ES Modules
 - Vite
-
-## Planned roadmap
-
-- `v0.7.0` — Lab
-- `v0.8.0` — QA / accessibility / SEO / performance
-- `v0.9.0` — Vercel preview and production preparation
-- `v1.0.0` — Production release at `jm.dev.br`
 
 ## Project structure
 
@@ -141,9 +159,28 @@ jm-portfolio/
 │   └── main.js
 ├── index.html
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
 
+## Version history
+
+- `v0.1.0` — Foundation / Hero
+- `v0.2.0` — Selected Work
+- `v0.3.0` — About
+- `v0.4.0` — Experience
+- `v0.5.0` — Capabilities
+- `v0.6.0` — Contact
+- `v0.7.0` — SEO and accessibility baseline
+
+## Roadmap
+
+- `v0.8.0` — QA, Lighthouse, responsive review and performance
+- `v0.9.0` — Vercel preview and production preparation
+- `v1.0.0` — Production release at `jm.dev.br`
+
+A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.
+
 ## Status
 
-🟡 Active development — **v0.6.0**
+🟡 Production preparation — **v0.7.0**

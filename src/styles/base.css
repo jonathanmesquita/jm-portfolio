@@ -6,10 +6,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
 }
 
 body {
   margin: 0;
+
   min-width: 320px;
   min-height: 100vh;
 
@@ -20,6 +22,15 @@ body {
   line-height: 1.6;
 
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  display: block;
+}
+
+section {
+  scroll-margin-top: 2rem;
 }
 
 a {
@@ -38,11 +49,16 @@ img,
 picture,
 svg {
   display: block;
+
   max-width: 100%;
 }
 
 #app {
-  width: min(100% - 2rem, var(--container-width));
+  width: min(
+    100% - 2rem,
+    var(--container-width)
+  );
+
   margin-inline: auto;
 }
 
@@ -57,13 +73,21 @@ h1,
 h2,
 h3 {
   font-family: var(--font-heading);
+
   line-height: 1.1;
+
+  text-wrap: balance;
 }
 
 h1 {
   margin-bottom: var(--space-sm);
 
-  font-size: clamp(2.75rem, 8vw, 6rem);
+  font-size: clamp(
+    2.75rem,
+    8vw,
+    6rem
+  );
+
   letter-spacing: -0.05em;
 }
 
@@ -79,4 +103,10 @@ p {
 :focus-visible {
   outline: 2px solid var(--color-digital);
   outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
