@@ -1032,6 +1032,176 @@
 
 
 /* ==============================
+   Contact
+   ============================== */
+
+.contact {
+  padding-block: clamp(
+    5rem,
+    10vw,
+    10rem
+  );
+}
+
+.contact-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(0, 0.9fr);
+
+  gap: clamp(
+    3rem,
+    8vw,
+    8rem
+  );
+
+  padding-block: clamp(
+    3rem,
+    7vw,
+    6rem
+  );
+}
+
+.contact-kicker {
+  margin-bottom: var(--space-md);
+
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+
+  color: var(--color-clay);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-intro h3 {
+  max-width: 10ch;
+
+  margin: 0;
+
+  font-size: clamp(
+    3rem,
+    7vw,
+    7rem
+  );
+
+  font-weight: 500;
+
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+
+  color: var(--color-ink);
+}
+
+.contact-content {
+  align-self: end;
+}
+
+.contact-text {
+  max-width: 38rem;
+
+  margin:
+    0
+    0
+    var(--space-lg);
+
+  font-size: clamp(
+    1rem,
+    1.6vw,
+    1.15rem
+  );
+
+  line-height: 1.7;
+
+  color: var(--color-ink);
+}
+
+.contact-email {
+  display: inline-block;
+
+  margin-bottom: var(--space-lg);
+
+  padding-bottom: 0.25rem;
+
+  border-bottom: 1px solid currentColor;
+
+  font-size: clamp(
+    1.2rem,
+    2.5vw,
+    2rem
+  );
+
+  font-weight: 500;
+
+  color: var(--color-clay);
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.contact-links {
+  border-top: 1px solid var(--border-color);
+}
+
+.contact-links a {
+  display: grid;
+
+  grid-template-columns:
+    8rem
+    1fr;
+
+  gap: var(--space-md);
+
+  padding-block: var(--space-sm);
+
+  border-bottom: 1px solid var(--border-color);
+
+  transition:
+    color 180ms ease,
+    padding-inline 180ms ease;
+}
+
+.contact-links a span:first-child {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+
+  color: var(--color-moss);
+
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.contact-links a span:last-child {
+  font-size: 0.9rem;
+
+  color: var(--color-ink);
+}
+
+.contact-footer {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: var(--space-md);
+
+  padding-top: var(--space-md);
+
+  border-top: 1px solid var(--border-color);
+
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+
+  color: var(--color-moss);
+
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+
+/* ==============================
    Site Meta
    ============================== */
 
@@ -1127,6 +1297,18 @@
   .capability:hover h3 {
     color: var(--color-moss);
   }
+
+  .contact-email:hover {
+    color: var(--color-moss);
+  }
+
+  .contact-links a:hover {
+    padding-inline: 0.75rem;
+  }
+
+  .contact-links a:hover span:last-child {
+    color: var(--color-clay);
+  }
 }
 
 
@@ -1208,6 +1390,20 @@
     align-items: flex-start;
 
     text-align: left;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+
+    gap: var(--space-lg);
+  }
+
+  .contact-intro h3 {
+    max-width: 14ch;
+  }
+
+  .contact-content {
+    align-self: auto;
   }
 }
 
@@ -1373,6 +1569,19 @@
     text-align: left;
   }
 
+  .contact-links a {
+    grid-template-columns: 1fr;
+
+    gap: 0.35rem;
+  }
+
+  .contact-footer {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0.4rem;
+  }
+
   .site-meta {
     flex-direction: column;
     align-items: flex-start;
@@ -1431,6 +1640,18 @@
       11vw,
       3.5rem
     );
+  }
+
+  .contact-intro h3 {
+    font-size: clamp(
+      2.6rem,
+      13vw,
+      4rem
+    );
+  }
+
+  .contact-email {
+    overflow-wrap: anywhere;
   }
 }
 

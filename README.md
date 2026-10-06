@@ -2,7 +2,7 @@
 
 Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-Current version: **v0.5.0**
+Current version: **v0.6.0**
 
 Last update: **2026.10.05**
 
@@ -17,6 +17,7 @@ Centralize my professional presence at `jm.dev.br` and organize independent proj
 - About
 - Experience
 - Capabilities
+- Contact
 
 ## Selected projects
 
@@ -78,6 +79,24 @@ Status: Building.
 - Cloudflare
 - DNS
 
+## Professional links
+
+- GitHub — `github.com/jonathanmesquita`
+- LinkedIn — `linkedin.com/in/jonathanmesquita`
+- Featured project — `arriba.jm.dev.br`
+
+## Contact
+
+Email:
+
+`jonathan-mesquita@live.com`
+
+Location:
+
+São Paulo — Brazil
+
+Available for remote software development opportunities.
+
 ## Visual direction
 
 Minimal **Tech Boho** design system combining warm organic colors with restrained technical elements.
@@ -101,7 +120,6 @@ Core principles:
 
 ## Planned roadmap
 
-- `v0.6.0` — Contact / professional links
 - `v0.7.0` — Lab
 - `v0.8.0` — QA / accessibility / SEO / performance
 - `v0.9.0` — Vercel preview and production preparation
@@ -124,3 +142,8 @@ jm-portfolio/
 ├── index.html
 ├── package.json
 └── README.md
+```
+
+## Status
+
+🟡 Active development — **v0.6.0**
