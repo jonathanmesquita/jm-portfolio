@@ -173,18 +173,20 @@ jm-portfolio/
 - `v0.6.0` — Contact
 - `v0.7.0` — SEO and accessibility baseline
 - `v0.8.0` — QA, contrast fixes, favicon, social preview, robots and sitemap
+- `v0.9.0` — Vercel deployment, Git integration and production preparation
+- `v1.0.0` — Production release at `jm.dev.br`
 
 ## Roadmap
 
-- `v0.9.0` — Vercel preview and production preparation
-- `v1.0.0` — Production release at `jm.dev.br`
+Post-v1 improvements will focus on stronger case studies, production-ready projects and measured improvements to the portfolio experience.
+
+A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.
 
 A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.
 
 ## Status
 
-🟡 Production preparation — **v0.8.0**
-## QA v0.8.0
+🟢 Live in production — **v1.0.0**
 
 Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
 
