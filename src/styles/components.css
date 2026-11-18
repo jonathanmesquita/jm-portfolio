@@ -22,7 +22,6 @@
   transform: translateY(0);
 }
 
-
 /* ==============================
    Header
    ============================== */
@@ -96,7 +95,6 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
 }
-
 
 /* ==============================
    Hero
@@ -233,7 +231,6 @@
   gap: var(--space-sm);
 }
 
-
 /* ==============================
    Buttons
    ============================== */
@@ -275,7 +272,6 @@
 .button-secondary:focus-visible {
   background: var(--color-sand);
 }
-
 
 /* ==============================
    Shared Section Header
@@ -321,257 +317,6 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-
-
-/* ==============================
-   Selected Work
-   ============================== */
-
-.work {
-  padding-block: clamp(
-    5rem,
-    10vw,
-    10rem
-  );
-}
-
-.projects {
-  border-bottom: 1px solid var(--border-color);
-}
-
-
-/* ==============================
-   Project
-   ============================== */
-
-.project {
-  position: relative;
-
-  display: grid;
-
-  grid-template-columns:
-    3rem
-    minmax(0, 1fr)
-    auto;
-
-  gap: var(--space-md);
-
-  padding-block: clamp(
-    2rem,
-    5vw,
-    4rem
-  );
-
-  border-top: 1px solid var(--border-color);
-
-  transition:
-    background 220ms ease,
-    padding-inline 220ms ease;
-}
-
-.project:first-child {
-  border-top: 0;
-}
-
-.project-index,
-.project-meta,
-.project-status,
-.project-stack {
-  font-family: var(--font-mono);
-}
-
-.project-index {
-  font-size: 0.75rem;
-
-  color: var(--color-moss);
-}
-
-.project-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-sm);
-
-  margin-bottom: var(--space-sm);
-
-  font-size: 0.7rem;
-
-  color: var(--color-moss);
-
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.project h3 {
-  margin-bottom: var(--space-md);
-
-  font-size: clamp(
-    2.5rem,
-    7vw,
-    6rem
-  );
-
-  font-weight: 500;
-
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-
-  transition: color 180ms ease;
-}
-
-.project-description {
-  max-width: 42rem;
-
-  line-height: 1.6;
-
-  color: var(--color-ink);
-}
-
-.project-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-
-  padding: 0;
-
-  margin:
-    var(--space-md)
-    0
-    0;
-
-  list-style: none;
-
-  font-size: 0.7rem;
-
-  color: var(--color-moss);
-}
-
-.project-stack li:not(:last-child)::after {
-  content: " / ";
-
-  margin-left: 0.5rem;
-
-  color: var(--color-muted-text);
-}
-
-
-/* ==============================
-   Project Actions
-   ============================== */
-
-.project-actions {
-  display: flex;
-  flex-direction: column;
-
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: var(--space-md);
-
-  font-size: 0.8rem;
-}
-
-.project-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  color: var(--color-clay-text);
-
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.project-status-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-
-  flex: 0 0 auto;
-
-  border-radius: 50%;
-
-  background: var(--color-clay);
-}
-
-.project-link {
-  padding-bottom: 0.15rem;
-
-  border-bottom: 1px solid currentColor;
-
-  transition:
-    color 180ms ease,
-    border-color 180ms ease;
-}
-
-.project-coming {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-
-  color: var(--color-muted-text);
-
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-
-/* ==============================
-   Featured Project
-   ============================== */
-
-.project-featured {
-  margin-block: var(--space-md);
-
-  padding-inline: clamp(
-    1rem,
-    3vw,
-    2rem
-  );
-
-  background: var(--color-ink);
-  color: var(--color-canvas);
-
-  border-top: 0;
-}
-
-.project-featured .project-index,
-.project-featured .project-meta,
-.project-featured .project-stack {
-  color: var(--color-sand);
-}
-
-.project-featured .project-description {
-  color: var(--color-canvas);
-}
-
-.project-featured h3 {
-  color: var(--color-canvas);
-}
-
-.project-featured .project-status {
-  color: var(--color-clay-on-ink);
-}
-
-.project-featured .project-status-dot {
-  background: var(--color-clay);
-}
-
-.project-featured .project-link {
-  color: var(--color-canvas);
-}
-
-.project-featured-label {
-  display: inline-block;
-
-  margin-bottom: var(--space-sm);
-
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-
-  color: var(--color-clay-on-ink);
-
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
 
 /* ==============================
    About
@@ -692,7 +437,6 @@
 
   color: var(--color-ink);
 }
-
 
 /* ==============================
    Experience
@@ -831,7 +575,6 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-
 
 /* ==============================
    Capabilities
@@ -1030,7 +773,6 @@
   color: var(--color-moss);
 }
 
-
 /* ==============================
    Contact
    ============================== */
@@ -1202,7 +944,6 @@
   letter-spacing: 0.07em;
 }
 
-
 /* ==============================
    Site Meta
    ============================== */
@@ -1226,7 +967,6 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-
 
 /* ==============================
    Back to Top
@@ -1284,24 +1024,9 @@
   outline-offset: 4px;
 }
 
-
 /* ==============================
    QA Accessibility Adjustments
    ============================== */
-
-.main-nav a,
-.github-link,
-.project-link {
-  display: inline-flex;
-  align-items: center;
-
-  min-height: 24px;
-}
-
-.project-featured :focus-visible {
-  outline-color: var(--color-sand);
-}
-
 
 /* ==============================
    Hover Capable Devices
@@ -1325,39 +1050,6 @@
 
   .button-secondary:hover {
     background: var(--color-sand);
-  }
-
-  .project:hover {
-    padding-inline: 1rem;
-
-    background: rgba(
-      216,
-      207,
-      194,
-      0.22
-    );
-  }
-
-  .project:hover h3 {
-    color: var(--color-moss);
-  }
-
-  .project-link:hover {
-    color: var(--color-clay-text);
-  }
-
-  .project-featured:hover {
-    padding-inline: clamp(
-      1.25rem,
-      3.5vw,
-      2.5rem
-    );
-
-    background: var(--color-ink);
-  }
-
-  .project-featured:hover h3 {
-    color: var(--color-sand);
   }
 
   .capability:hover {
@@ -1395,7 +1087,6 @@
   }
 }
 
-
 /* ==============================
    Tablet
    ============================== */
@@ -1409,19 +1100,6 @@
 
   .hero-actions {
     justify-self: start;
-  }
-
-  .project {
-    grid-template-columns:
-      2rem
-      minmax(0, 1fr);
-  }
-
-  .project-actions {
-    grid-column: 2;
-
-    flex-direction: row;
-    align-items: center;
   }
 
   .about-grid {
@@ -1490,7 +1168,6 @@
     align-self: auto;
   }
 }
-
 
 /* ==============================
    Mobile
@@ -1586,31 +1263,6 @@
     display: none;
   }
 
-  .project {
-    grid-template-columns: 1fr;
-  }
-
-  .project-index {
-    margin-bottom: calc(
-      var(--space-sm) * -1
-    );
-  }
-
-  .project-meta {
-    flex-direction: column;
-
-    gap: 0.25rem;
-  }
-
-  .project-actions {
-    grid-column: auto;
-
-    flex-direction: row;
-
-    align-items: center;
-    justify-content: flex-start;
-  }
-
   .about-detail {
     grid-template-columns: 1fr;
 
@@ -1682,7 +1334,6 @@
   }
 }
 
-
 /* ==============================
    Small Mobile
    ============================== */
@@ -1712,12 +1363,6 @@
     gap: var(--space-sm);
   }
 
-  .project-actions {
-    align-items: flex-start;
-
-    flex-direction: column;
-  }
-
   .about-intro h3 {
     font-size: clamp(
       2.5rem,
@@ -1742,7 +1387,6 @@
     );
   }
 }
-
 
 /* ==============================
    Reduced Motion

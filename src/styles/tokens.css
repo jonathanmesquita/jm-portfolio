@@ -13,6 +13,11 @@
   --color-clay-on-ink: #c48d6e;
   --color-muted-text: #626965;
 
+  /* Dark "screening room" surfaces used by the project catalog. */
+  --color-ink-raised: #262824;
+  --color-on-ink-muted: #c9c2b6;
+  --border-on-ink: rgba(242, 238, 230, 0.16);
+
   /* Typography */
   --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: "Manrope Variable", "Manrope", var(--font-sans);
