@@ -14,9 +14,9 @@
   --color-muted-text: #626965;
 
   /* Typography */
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: "Manrope", var(--font-sans);
-  --font-mono: "IBM Plex Mono", monospace;
+  --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: "Manrope Variable", "Manrope", var(--font-sans);
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   /* Layout */
   --container-width: 1200px;
