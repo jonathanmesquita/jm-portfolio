@@ -2,9 +2,9 @@
 
 Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-Current version: **v0.8.0**
+Current version: **v1.1.0**
 
-Last update: **2026.10.05**
+Last update: **2026.11.18**
 
 ## Objective
 
@@ -19,35 +19,31 @@ Centralize my professional presence at `jm.dev.br` and organize independent proj
 - Capabilities
 - Contact
 
-## Selected projects
+## Selected work — the catalog
 
-### Arriba Platform
+Projects are presented like a streaming catalog:
 
-Full-stack support platform based on real operational problems involving documentation, automation, data and technical support.
+- **Billboard** with the featured project (Arriba Platform).
+- **Genre filters** — All, Live now, Tools, Games, Data, In progress.
+- **Rows** that scroll sideways: Top picks, Inside Arriba Platform, Games & interactive
+  stories, Data analysis with Python, Where it started, Coming soon.
+- **Title cards** that play a silent preview on hover or keyboard focus.
+- **Details dialog** with a looping preview, highlights, stack, live and code links, and
+  "More like this". Every title has a shareable link: `jm.dev.br/#work/<slug>`.
 
-Live project:
+17 titles, declared once in `src/data/projects.js`. Posters and previews are recorded from the
+real projects — see [docs/catalog-media.md](docs/catalog-media.md). Videos load only when a
+preview starts, and nothing autoplays with reduced motion or Save-Data.
 
-`arriba.jm.dev.br`
+Highlights:
 
-Stack:
-
-- JavaScript
-- Node.js
-- Express
-- REST APIs
-- SQL
-
-### Focus JM
-
-Minimal Pomodoro study application designed to integrate with a Notion workflow.
-
-Status: Building.
-
-Stack:
-
-- JavaScript
-- Node.js
-- Notion API
+| Title | What it is | Link |
+|---|---|---|
+| Arriba Platform | Browser-based technical tools: CNAB 400, CSV, SQL sandbox, editor, AI chat | `arriba.jm.dev.br` |
+| Arriba Jump | Pixel-art runner across São Paulo, plain JavaScript | `arriba-jump.jm.dev.br` |
+| Project Nexus 2027 | Interactive autobiographical gamebook (React + TypeScript) | in development |
+| Data analysis | Retail and churn studies in Python / Pandas | GitHub |
+| Focus JM | Pomodoro timer connected to Notion | in development |
 
 ## Capabilities
 
@@ -118,7 +114,8 @@ The portfolio currently includes:
 - Schema.org structured data;
 - keyboard focus styles;
 - skip-to-content navigation;
-- reduced-motion support;
+- reduced-motion support (no video autoplay);
+- details dialog on native `<dialog>` with focus return;
 - responsive layouts;
 - semantic section structure.
 
@@ -142,20 +139,28 @@ Core principles:
 - Modern CSS
 - JavaScript ES Modules
 - Vite
+- Self-hosted fonts via Fontsource (Inter, Manrope, IBM Plex Mono)
 
 ## Project structure
 
 ```text
 jm-portfolio/
 ├── docs/
+│   └── catalog-media.md      # how posters and previews are recorded
+├── public/
+│   └── catalog/              # <slug>.webp posters + <slug>.mp4 previews
+├── scripts/
+│   └── catalog/              # capture.mjs (Playwright) + encode.sh (ffmpeg)
 ├── src/
 │   ├── data/
 │   │   ├── capabilities.js
-│   │   └── projects.js
+│   │   └── projects.js       # catalog: titles, rows and filters
 │   ├── styles/
 │   │   ├── base.css
+│   │   ├── catalog.css
 │   │   ├── components.css
 │   │   └── tokens.css
+│   ├── catalog.js
 │   └── main.js
 ├── index.html
 ├── package.json
@@ -175,6 +180,7 @@ jm-portfolio/
 - `v0.8.0` — QA, contrast fixes, favicon, social preview, robots and sitemap
 - `v0.9.0` — Vercel deployment, Git integration and production preparation
 - `v1.0.0` — Production release at `jm.dev.br`
+- `v1.1.0` — Streaming-style project catalog with video previews, self-hosted fonts
 
 ## Roadmap
 
@@ -182,11 +188,9 @@ Post-v1 improvements will focus on stronger case studies, production-ready proje
 
 A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.
 
-A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.
-
 ## Status
 
-🟢 Live in production — **v1.0.0**
+🟢 Live in production — **v1.0.0** · **v1.1.0** ready on branch
 
 Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
 
