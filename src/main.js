@@ -9,6 +9,8 @@ import "./styles/components.css";
 import "./styles/catalog.css";
 
 import { mountCatalog, catalogSize } from "./catalog.js";
+import { initialLang, rememberLang, translatePage, UI } from "./i18n.js";
+import { startAnalytics, track } from "./analytics.js";
 import { capabilities } from "./data/capabilities.js";
 
 const catalogRoot = document.querySelector("#catalog");
@@ -101,10 +103,41 @@ function scrollToTop() {
   });
 }
 
-mountCatalog(catalogRoot);
+/* ?lang=pt (used by the hreflang alternate) wins over the stored choice. */
+const requestedLang = new URLSearchParams(location.search).get("lang");
+let lang = requestedLang === "pt" || requestedLang === "en" ? requestedLang : initialLang();
 
-if (workCount) workCount.textContent = `${catalogSize} titles`;
+const catalog = mountCatalog(catalogRoot, { initialLang: lang });
+const langSwitch = document.querySelector("#lang-switch");
+
+function applyLang(nextLang) {
+  lang = nextLang;
+  document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+
+  translatePage(document.body, lang);
+  catalog.setLang(lang);
+
+  if (workCount) workCount.textContent = `${catalogSize} ${UI[lang].titles}`;
+
+  if (langSwitch) {
+    const target = lang === "pt" ? "en" : "pt";
+    langSwitch.textContent = target.toUpperCase();
+    langSwitch.lang = target === "pt" ? "pt-BR" : "en";
+    langSwitch.setAttribute("aria-label", UI[lang].switchLabel);
+    langSwitch.title = UI[lang].switchLabel;
+  }
+}
+
+langSwitch?.addEventListener("click", () => {
+  const next = lang === "pt" ? "en" : "pt";
+  rememberLang(next);
+  applyLang(next);
+  track("Language", { lang: next });
+});
+
 renderCapabilities();
+applyLang(lang);
+startAnalytics();
 
 if (backToTopButton) {
   window.addEventListener(

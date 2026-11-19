@@ -1,0 +1,181 @@
+{
+  "_doc": "Single source for the catalog media pipeline (update.mjs). One entry per slug in src/data/projects.js that has media. See docs/catalog-media.md.",
+  "github": "https://github.com/jonathanmesquita",
+  "titles": {
+    "arriba": {
+      "repo": "arriba_platform",
+      "job": "arriba",
+      "viewport": "large",
+      "video": {
+        "start": 0.8,
+        "duration": 8
+      },
+      "poster": {
+        "image": "assets/img/capas-wallpaper-menus/arriba-hero-bg.webp",
+        "crop": "936x526+736+206"
+      },
+      "billboard": {
+        "image": "assets/img/capas-wallpaper-menus/arriba-hero-bg.webp",
+        "size": "1600x900"
+      }
+    },
+    "arriba-jump": {
+      "repo": "arriba-jump",
+      "job": "jump",
+      "viewport": "large",
+      "video": {
+        "start": 3.0,
+        "duration": 9
+      },
+      "poster": "jump"
+    },
+    "nexus": {
+      "repo": "nexus2027",
+      "job": "nexus",
+      "viewport": "small",
+      "build": "if [ -f package-lock.json ]; then npm ci; else npm install --no-audit --no-fund; fi && npx vite build",
+      "serve": "dist",
+      "video": {
+        "start": 1.6,
+        "duration": 9
+      },
+      "poster": "nexus2"
+    },
+    "cnab-400": {
+      "repo": "arriba_platform",
+      "job": "cnab",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "cnab"
+    },
+    "csv-validator": {
+      "repo": "arriba_platform",
+      "job": "csvval",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "csvval"
+    },
+    "sql-playground": {
+      "repo": "arriba_platform",
+      "job": "sql",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "sql"
+    },
+    "sql-course": {
+      "repo": "arriba_platform",
+      "job": "curso",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "curso"
+    },
+    "web-editor": {
+      "repo": "arriba_platform",
+      "job": "editor",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "editor"
+    },
+    "dns-checker": {
+      "repo": "arriba_platform",
+      "job": "dns",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "dns"
+    },
+    "test-data": {
+      "repo": "arriba_platform",
+      "job": "massa",
+      "viewport": "large",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "massa"
+    },
+    "store-analysis": {
+      "repo": "Challenge--Alura-Store",
+      "kind": "notebook",
+      "notebook": "Projeto/analise_lojas.ipynb",
+      "video": {
+        "secondsPerChart": 2.2
+      }
+    },
+    "churn-analysis": {
+      "repo": "Challenge-Alura-TelecomXBR",
+      "kind": "notebook",
+      "notebook": "ChallengeTelecomX_BR.ipynb",
+      "video": {
+        "secondsPerChart": 2.2
+      }
+    },
+    "base64": {
+      "repo": "DecodificacaoBase64",
+      "job": "base64",
+      "viewport": "small",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "base64"
+    },
+    "case-converter": {
+      "repo": "convertor-maiusculas-minusculas",
+      "job": "caixa",
+      "viewport": "small",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "caixa"
+    },
+    "csv-reader": {
+      "repo": "leitor-csv",
+      "job": "csv",
+      "viewport": "small",
+      "video": {
+        "start": 0.6,
+        "duration": 6
+      },
+      "poster": "csv"
+    },
+    "secret-friend": {
+      "repo": "challenge-amigo-secreto",
+      "job": "amigo",
+      "viewport": "small",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "amigo"
+    },
+    "profile-card": {
+      "repo": "cartao_mesquita",
+      "job": "cartao",
+      "viewport": "small",
+      "video": {
+        "start": 0.6,
+        "duration": 7
+      },
+      "poster": "cartao"
+    }
+  }
+}

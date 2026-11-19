@@ -247,6 +247,24 @@ export const projects = [
     media: { poster: "case-converter", video: "case-converter" }
   },
   {
+    slug: "csv-reader",
+    title: "CSV Reader",
+    category: "Small tool",
+    year: "2025 — 2026",
+    status: "archive",
+    genres: ["tool", "data"],
+    description:
+      "Opens a CSV in the browser and shows it as a table. Rebuilt in 2026 with a real RFC 4180 parser: quoted fields, escaped quotes, separators and line breaks inside a field.",
+    highlights: [
+      "Detects ; or , from the first line, outside quotes",
+      "Cells written as text, never as HTML",
+      "Clear messages for empty files, missing separators and rows with the wrong number of fields"
+    ],
+    stack: ["JavaScript", "RFC 4180", "HTML", "CSS"],
+    links: { live: null, code: `${GITHUB}/leitor-csv` },
+    media: { poster: "csv-reader", video: "csv-reader" }
+  },
+  {
     slug: "secret-friend",
     title: "Secret Friend Draw",
     category: "Course challenge",
@@ -318,7 +336,7 @@ export const catalogRows = [
   {
     id: "origins",
     title: "Where it started",
-    items: ["base64", "case-converter", "secret-friend", "profile-card"]
+    items: ["base64", "case-converter", "csv-reader", "secret-friend", "profile-card"]
   },
   {
     id: "soon",

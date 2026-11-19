@@ -50,7 +50,8 @@
    Shared buttons on dark
    ============================== */
 
-.work .button {
+.work .button,
+.case-page .button {
   gap: 0.45rem;
 }
 
@@ -1149,4 +1150,62 @@
 .title-card.is-locked .title-placeholder-mark,
 .dialog-locked .title-placeholder-mark {
   visibility: hidden;
+}
+
+
+/* ==============================
+   Links to the project page
+   ============================== */
+
+.billboard-link,
+.dialog-page-link {
+  align-self: center;
+
+  padding-bottom: 0.1rem;
+
+  border-bottom: 1px solid currentColor;
+
+  color: var(--color-canvas);
+
+  font-size: 0.9rem;
+}
+
+.dialog-page-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+
+  margin-top: var(--space-sm);
+}
+
+.dialog-copy {
+  min-height: 32px;
+
+  padding: 0.3rem 0.75rem;
+
+  border: 1px solid rgba(242, 238, 230, 0.32);
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--color-sand);
+
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .billboard-link:hover,
+  .dialog-page-link:hover {
+    color: var(--color-sand);
+  }
+
+  .dialog-copy:hover {
+    border-color: var(--color-canvas);
+    color: var(--color-canvas);
+  }
 }

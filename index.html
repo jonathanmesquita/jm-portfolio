@@ -19,6 +19,12 @@
 
   <link rel="canonical" href="https://jm.dev.br/" />
 
+  <link rel="alternate" hreflang="en" href="https://jm.dev.br/" />
+
+  <link rel="alternate" hreflang="pt-BR" href="https://jm.dev.br/?lang=pt" />
+
+  <link rel="alternate" hreflang="x-default" href="https://jm.dev.br/" />
+
   <!-- ==============================
          Open Graph
          ============================== -->
@@ -129,9 +135,15 @@
         <a href="#contact">Contact</a>
       </nav>
 
-      <a class="github-link" href="https://github.com/jonathanmesquita" target="_blank" rel="noopener noreferrer">
-        GitHub ↗
-      </a>
+      <div class="header-actions">
+        <button class="lang-switch" id="lang-switch" type="button" lang="pt-BR" data-i18n-skip>
+          PT
+        </button>
+
+        <a class="github-link" href="https://github.com/jonathanmesquita" target="_blank" rel="noopener noreferrer">
+          GitHub ↗
+        </a>
+      </div>
     </header>
 
     <main id="main-content" tabindex="-1">
@@ -221,7 +233,7 @@
           open it for the story, the stack and the links.
         </p>
 
-        <div class="catalog" id="catalog">
+        <div class="catalog" id="catalog" data-i18n-skip>
           <noscript>
             <ul class="catalog-fallback">
               <li><a href="https://arriba.jm.dev.br">Arriba Platform ↗</a></li>
@@ -591,11 +603,11 @@
       </span>
 
       <span>
-        V1.1.0
+        V1.2.0
       </span>
 
       <span>
-        UPDATED 2026.11.18
+        UPDATED 2026.11.19
       </span>
     </footer>
   </div>

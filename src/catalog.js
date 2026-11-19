@@ -3,7 +3,8 @@
  * of title cards with hover previews, and a details dialog.
  *
  * Everything is built with DOM APIs (no innerHTML), so project text can never
- * be interpreted as markup.
+ * be interpreted as markup. Text comes in English or Portuguese (see
+ * src/project-text.js); switching language re-renders the catalog.
  */
 
 import {
@@ -12,20 +13,27 @@ import {
   catalogRows,
   genreFilters
 } from "./data/projects.js";
+import { UI } from "./i18n.js";
+import {
+  localize,
+  rowTitle,
+  filterLabel,
+  caseStudyFor,
+  pagePath,
+  pageUrl
+} from "./project-text.js";
+import { track } from "./analytics.js";
 
 const MEDIA_PATH = "/catalog/";
 const PREVIEW_DELAY_MS = 450;
-
-const STATUS_LABEL = {
-  live: "Live",
-  building: "Locked",
-  archive: "Archive"
-};
 
 const bySlug = new Map(projects.map((project) => [project.slug, project]));
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+let lang = "en";
+const ui = () => UI[lang];
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -61,12 +69,12 @@ function canAutoplayPreview() {
   return !reducedMotion.matches && !saveData;
 }
 
+function statusLabel(project) {
+  return ui()[`status_${project.status}`];
+}
+
 function statusBadge(project) {
-  return h(
-    "span",
-    { class: `title-badge title-badge-${project.status}` },
-    STATUS_LABEL[project.status]
-  );
+  return h("span", { class: `title-badge title-badge-${project.status}` }, statusLabel(project));
 }
 
 /* Projects still being built are shown locked: blurred art, a padlock,
@@ -101,7 +109,7 @@ function lockOverlay() {
     "span",
     { class: "lock-overlay", "aria-hidden": "true" },
     lockIcon(),
-    h("span", { class: "lock-text" }, "Unlocks soon")
+    h("span", { class: "lock-text" }, ui().unlocksSoon)
   );
 }
 
@@ -110,6 +118,16 @@ function placeholderPoster() {
     "span",
     { class: "title-placeholder", "aria-hidden": "true" },
     h("span", { class: "title-placeholder-mark" }, "JM.")
+  );
+}
+
+function externalLink(href, label, variant, onclick) {
+  return h(
+    "a",
+    { class: `button ${variant}`, href, target: "_blank", rel: "noopener noreferrer", onclick },
+    label,
+    h("span", { "aria-hidden": "true" }, " ↗"),
+    h("span", { class: "visually-hidden" }, ui().newTab)
   );
 }
 
@@ -142,6 +160,7 @@ function stopPreview(card) {
 
 function titleCard(project, { rank } = {}) {
   const locked = isLocked(project);
+  const text = localize(project, lang);
 
   const media = project.media
     ? [
@@ -182,8 +201,8 @@ function titleCard(project, { rank } = {}) {
       "span",
       { class: "title-info" },
       statusBadge(project),
-      h("span", { class: "title-name" }, project.title),
-      h("span", { class: "title-meta" }, `${project.category} · ${project.year}`)
+      h("span", { class: "title-name" }, text.title),
+      h("span", { class: "title-meta" }, `${text.category} · ${project.year}`)
     )
   );
 
@@ -226,13 +245,12 @@ function updateRowArrows(track, previous, next) {
 function catalogRow(row) {
   const items = row.items.map((slug) => bySlug.get(slug)).filter(Boolean);
   const headingId = `row-${row.id}`;
+  const title = rowTitle(row, lang);
 
   const track = h(
     "ul",
     { class: "row-track", role: "list", "aria-labelledby": headingId },
-    items.map((project, index) =>
-      titleCard(project, { rank: row.ranked ? index + 1 : null })
-    )
+    items.map((project, index) => titleCard(project, { rank: row.ranked ? index + 1 : null }))
   );
 
   const scrollBy = (direction) => {
@@ -242,31 +260,22 @@ function catalogRow(row) {
     });
   };
 
-  const previous = h(
-    "button",
-    {
-      type: "button",
-      class: "row-arrow row-arrow-prev",
-      "aria-label": `Scroll ${row.title} back`,
-      onclick: () => scrollBy(-1)
-    },
-    h("span", { "aria-hidden": "true" }, "‹")
-  );
+  const arrow = (direction, label, glyph) =>
+    h(
+      "button",
+      {
+        type: "button",
+        class: `row-arrow row-arrow-${direction > 0 ? "next" : "prev"}`,
+        "aria-label": label,
+        onclick: () => scrollBy(direction)
+      },
+      h("span", { "aria-hidden": "true" }, glyph)
+    );
 
-  const next = h(
-    "button",
-    {
-      type: "button",
-      class: "row-arrow row-arrow-next",
-      "aria-label": `Scroll ${row.title} forward`,
-      onclick: () => scrollBy(1)
-    },
-    h("span", { "aria-hidden": "true" }, "›")
-  );
+  const previous = arrow(-1, ui().scrollBack(title), "‹");
+  const next = arrow(1, ui().scrollForward(title), "›");
 
-  track.addEventListener("scroll", () => updateRowArrows(track, previous, next), {
-    passive: true
-  });
+  track.addEventListener("scroll", () => updateRowArrows(track, previous, next), { passive: true });
 
   const section = h(
     "section",
@@ -274,8 +283,8 @@ function catalogRow(row) {
     h(
       "div",
       { class: "row-heading" },
-      h("h3", { id: headingId }, row.title),
-      h("span", { class: "row-count" }, `${items.length} titles`)
+      h("h3", { id: headingId }, title),
+      h("span", { class: "row-count" }, `${items.length} ${ui().titles}`)
     ),
     h("div", { class: "row-viewport" }, previous, track, next)
   );
@@ -290,9 +299,9 @@ function catalogRow(row) {
 /* ------------------------------------------------------------------ */
 
 function billboard(project, openDetails) {
-  const toolCount = catalogRows
-    .find((row) => row.id === "arriba-tools")
-    ?.items.length;
+  const text = localize(project, lang);
+  const toolCount = catalogRows.find((row) => row.id === "arriba-tools")?.items.length;
+  const hasCase = Boolean(caseStudyFor(project.slug, lang));
 
   return h(
     "div",
@@ -315,18 +324,18 @@ function billboard(project, openDetails) {
         "p",
         { class: "billboard-kicker" },
         h("span", { class: "billboard-mark", "aria-hidden": "true" }, "JM"),
-        "Featured project"
+        ui().featured
       ),
-      h("h3", { class: "billboard-title" }, project.title),
+      h("h3", { class: "billboard-title" }, text.title),
       h(
         "p",
         { class: "billboard-meta" },
         statusBadge(project),
         h("span", {}, project.year),
-        h("span", {}, project.category),
-        toolCount ? h("span", {}, `${toolCount} tools in this catalog`) : null
+        h("span", {}, text.category),
+        toolCount ? h("span", {}, ui().toolsInCatalog(toolCount)) : null
       ),
-      h("p", { class: "billboard-description" }, project.description),
+      h("p", { class: "billboard-description" }, text.description),
       h(
         "div",
         { class: "billboard-actions" },
@@ -337,11 +346,12 @@ function billboard(project, openDetails) {
                 class: "button button-light",
                 href: project.links.live,
                 target: "_blank",
-                rel: "noopener noreferrer"
+                rel: "noopener noreferrer",
+                onclick: () => track("Outbound", { slug: project.slug, kind: "live" })
               },
-              h("span", { "aria-hidden": "true" }, "▶ "),
-              "Open live",
-              h("span", { class: "visually-hidden" }, " (opens in a new tab)")
+              h("span", { "aria-hidden": "true" }, "▶"),
+              ui().openLive,
+              h("span", { class: "visually-hidden" }, ui().newTab)
             )
           : null,
         h(
@@ -350,11 +360,14 @@ function billboard(project, openDetails) {
             type: "button",
             class: "button button-ghost",
             "aria-haspopup": "dialog",
-            onclick: (event) => openDetails(project.slug, event.currentTarget)
+            onclick: (event) => openDetails(project.slug, event.currentTarget, "billboard")
           },
-          h("span", { "aria-hidden": "true" }, "ⓘ "),
-          "More info & preview"
-        )
+          h("span", { "aria-hidden": "true" }, "ⓘ"),
+          ui().moreInfo
+        ),
+        hasCase
+          ? h("a", { class: "billboard-link", href: pagePath(project.slug, lang) }, ui().caseStudy, h("span", { "aria-hidden": "true" }, " →"))
+          : null
       )
     )
   );
@@ -378,21 +391,6 @@ function createDialog() {
   return dialog;
 }
 
-function linkButton(href, label, variant) {
-  return h(
-    "a",
-    {
-      class: `button ${variant}`,
-      href,
-      target: "_blank",
-      rel: "noopener noreferrer"
-    },
-    label,
-    h("span", { "aria-hidden": "true" }, " ↗"),
-    h("span", { class: "visually-hidden" }, " (opens in a new tab)")
-  );
-}
-
 function similarTo(project) {
   return projects
     .filter(
@@ -405,21 +403,32 @@ function similarTo(project) {
     .slice(0, 3);
 }
 
+async function copyLink(button, url) {
+  const label = button.querySelector(".copy-label");
+  try {
+    await navigator.clipboard.writeText(url);
+    label.textContent = ui().copied;
+  } catch {
+    /* Clipboard blocked: show the URL so it can be copied by hand. */
+    label.textContent = url;
+  }
+  window.setTimeout(() => {
+    label.textContent = ui().copyLink;
+  }, 2200);
+}
+
 function fillDialog(dialog, project, openDetails) {
   const allowAutoplay = canAutoplayPreview();
   const locked = isLocked(project);
+  const text = localize(project, lang);
+  const hasCase = Boolean(caseStudyFor(project.slug, lang));
 
   const media = locked
     ? h(
         "div",
         { class: "dialog-locked" },
         project.media
-          ? h("img", {
-              src: mediaUrl(project.media.poster, "webp"),
-              alt: "",
-              width: "640",
-              height: "360"
-            })
+          ? h("img", { src: mediaUrl(project.media.poster, "webp"), alt: "", width: "640", height: "360" })
           : placeholderPoster(),
         lockOverlay()
       )
@@ -436,29 +445,51 @@ function fillDialog(dialog, project, openDetails) {
         preload: allowAutoplay ? "auto" : "none",
         width: "640",
         height: "360",
-        "aria-label": `Silent preview of ${project.title}`
+        "aria-label": ui().preview(text.title)
       })
     : h("div", { class: "dialog-placeholder" }, placeholderPoster());
 
-  const actions = locked ? [] : [
-    project.links.live ? linkButton(project.links.live, "Open live", "button-light") : null,
-    project.links.code ? linkButton(project.links.code, "View code", "button-ghost") : null
-  ].filter(Boolean);
+  const outbound = (kind) => () => track("Outbound", { slug: project.slug, kind });
+
+  const actions = locked
+    ? []
+    : [
+        project.links.live ? externalLink(project.links.live, ui().openLive, "button-light", outbound("live")) : null,
+        project.links.code ? externalLink(project.links.code, ui().viewCode, "button-ghost", outbound("code")) : null
+      ].filter(Boolean);
+
+  const pageLinks = h(
+    "div",
+    { class: "dialog-page-links" },
+    h(
+      "a",
+      { class: "dialog-page-link", href: pagePath(project.slug, lang) },
+      hasCase ? ui().caseStudy : ui().projectPage,
+      h("span", { "aria-hidden": "true" }, " →")
+    ),
+    h(
+      "button",
+      {
+        type: "button",
+        class: "dialog-copy",
+        onclick: (event) => {
+          copyLink(event.currentTarget, pageUrl(project.slug, lang));
+          track("Copy link", { slug: project.slug });
+        }
+      },
+      h("span", { class: "copy-label", "aria-live": "polite" }, ui().copyLink)
+    )
+  );
 
   const similar = similarTo(project);
 
   dialog.replaceChildren(
     h(
       "div",
-      { class: "dialog-panel" },
+      { class: "dialog-panel", lang: lang === "pt" ? "pt-BR" : "en" },
       h(
         "button",
-        {
-          type: "button",
-          class: "dialog-close",
-          "aria-label": "Close details",
-          onclick: () => dialog.close()
-        },
+        { type: "button", class: "dialog-close", "aria-label": ui().close, onclick: () => dialog.close() },
         h("span", { "aria-hidden": "true" }, "×")
       ),
       h("div", { class: "dialog-media" }, media),
@@ -473,40 +504,32 @@ function fillDialog(dialog, project, openDetails) {
             { class: "billboard-meta" },
             statusBadge(project),
             h("span", {}, project.year),
-            h("span", {}, project.category)
+            h("span", {}, text.category)
           ),
-          h("h3", { id: "title-dialog-heading" }, project.title),
-          h("p", { class: "dialog-description" }, project.description),
-          project.highlights.length
-            ? h(
-                "ul",
-                { class: "dialog-highlights" },
-                project.highlights.map((item) => h("li", {}, item))
-              )
+          h("h3", { id: "title-dialog-heading" }, text.title),
+          h("p", { class: "dialog-description" }, text.description),
+          text.highlights.length
+            ? h("ul", { class: "dialog-highlights" }, text.highlights.map((item) => h("li", {}, item)))
             : null,
           actions.length
             ? h("div", { class: "dialog-actions" }, actions)
-            : h(
-                "p",
-                { class: "dialog-note" },
-                lockIcon(),
-                "Still in the workshop. This title unlocks as soon as it ships."
-              )
+            : h("p", { class: "dialog-note" }, lockIcon(), ui().lockedNote),
+          pageLinks
         ),
         h(
           "dl",
           { class: "dialog-facts" },
-          h("dt", {}, "Stack"),
+          h("dt", {}, ui().stack),
           h("dd", {}, project.stack.join(" · ")),
-          h("dt", {}, "Status"),
-          h("dd", {}, locked ? "Locked · in development" : STATUS_LABEL[project.status])
+          h("dt", {}, ui().status),
+          h("dd", {}, locked ? ui().lockedStatus : statusLabel(project))
         )
       ),
       similar.length
         ? h(
             "div",
             { class: "dialog-similar" },
-            h("h4", {}, "More like this"),
+            h("h4", {}, ui().moreLikeThis),
             h(
               "ul",
               { role: "list" },
@@ -516,11 +539,7 @@ function fillDialog(dialog, project, openDetails) {
                   {},
                   h(
                     "button",
-                    {
-                      type: "button",
-                      class: "similar-card",
-                      onclick: () => openDetails(other.slug)
-                    },
+                    { type: "button", class: "similar-card", onclick: () => openDetails(other.slug, null, "similar") },
                     h("img", {
                       src: mediaUrl(other.media.poster, "webp"),
                       alt: "",
@@ -528,7 +547,7 @@ function fillDialog(dialog, project, openDetails) {
                       height: "360",
                       loading: "lazy"
                     }),
-                    h("span", {}, other.title)
+                    h("span", {}, localize(other, lang).title)
                   )
                 )
               )
@@ -557,19 +576,29 @@ function matchesFilter(project, filterId) {
 /* Mount                                                               */
 /* ------------------------------------------------------------------ */
 
-export function mountCatalog(root) {
-  if (!root) return;
+export function mountCatalog(root, { initialLang = "en" } = {}) {
+  if (!root) return { setLang() {} };
+
+  lang = initialLang;
 
   const dialog = createDialog();
   let returnFocusTo = null;
+  let currentSlug = null;
+  let currentFilter = "all";
+  let rows = [];
+  let rowsWrap;
+  let grid;
+  let status;
+  let chips = [];
 
   const hashFor = (slug) => `#work/${slug}`;
 
-  function openDetails(slug, opener) {
+  function openDetails(slug, opener, source = "card") {
     const project = bySlug.get(slug);
     if (!project) return;
 
     if (!dialog.open) returnFocusTo = opener || document.activeElement;
+    currentSlug = slug;
 
     fillDialog(dialog, project, openDetails);
 
@@ -577,13 +606,14 @@ export function mountCatalog(root) {
     dialog.querySelector(".dialog-close").focus();
     dialog.scrollTop = 0;
 
-    if (location.hash !== hashFor(slug)) {
-      history.replaceState(null, "", hashFor(slug));
-    }
+    if (location.hash !== hashFor(slug)) history.replaceState(null, "", hashFor(slug));
+
+    track("Open title", { slug, source });
   }
 
   dialog.addEventListener("close", () => {
     dialog.querySelector("video")?.pause();
+    currentSlug = null;
 
     if (location.hash.startsWith("#work/")) {
       history.replaceState(null, "", `${location.pathname}${location.search}#work`);
@@ -593,26 +623,9 @@ export function mountCatalog(root) {
     returnFocusTo = null;
   });
 
-  const rows = catalogRows.map(catalogRow);
-  const rowsWrap = h("div", { class: "catalog-rows" }, rows);
+  function applyFilter(filterId, { announce = true } = {}) {
+    currentFilter = filterId;
 
-  const grid = h("ul", { class: "catalog-grid", role: "list", hidden: true });
-  const status = h("p", { class: "visually-hidden", role: "status" });
-
-  const chips = genreFilters.map((filter) =>
-    h(
-      "button",
-      {
-        type: "button",
-        class: "genre-chip",
-        "aria-pressed": filter.id === "all" ? "true" : "false",
-        dataset: { filter: filter.id }
-      },
-      filter.label
-    )
-  );
-
-  function applyFilter(filterId) {
     for (const chip of chips) {
       chip.setAttribute("aria-pressed", String(chip.dataset.filter === filterId));
     }
@@ -621,7 +634,7 @@ export function mountCatalog(root) {
       grid.hidden = true;
       rowsWrap.hidden = false;
       rows.forEach((row) => row._refreshArrows());
-      status.textContent = `Showing all ${projects.length} titles in rows.`;
+      if (announce) status.textContent = ui().showingAll(projects.length);
       return;
     }
 
@@ -630,20 +643,42 @@ export function mountCatalog(root) {
     grid.hidden = false;
     rowsWrap.hidden = true;
 
-    const label = genreFilters.find((filter) => filter.id === filterId).label;
-    status.textContent = `${label}: ${matches.length} titles.`;
+    const label = filterLabel(genreFilters.find((filter) => filter.id === filterId), lang);
+    if (announce) status.textContent = ui().filtered(label, matches.length);
   }
 
-  const filterBar = h(
-    "div",
-    { class: "genre-bar", role: "group", "aria-label": "Filter projects" },
-    chips
-  );
+  function render() {
+    rows = catalogRows.map(catalogRow);
+    rowsWrap = h("div", { class: "catalog-rows" }, rows);
+    grid = h("ul", { class: "catalog-grid", role: "list", hidden: true });
+    status = h("p", { class: "visually-hidden", role: "status" });
 
-  filterBar.addEventListener("click", (event) => {
-    const chip = event.target.closest(".genre-chip");
-    if (chip) applyFilter(chip.dataset.filter);
-  });
+    chips = genreFilters.map((filter) =>
+      h(
+        "button",
+        {
+          type: "button",
+          class: "genre-chip",
+          "aria-pressed": "false",
+          dataset: { filter: filter.id }
+        },
+        filterLabel(filter, lang)
+      )
+    );
+
+    const filterBar = h("div", { class: "genre-bar", role: "group", "aria-label": ui().filterLabel }, chips);
+
+    filterBar.addEventListener("click", (event) => {
+      const chip = event.target.closest(".genre-chip");
+      if (!chip) return;
+      applyFilter(chip.dataset.filter);
+      track("Filter", { filter: chip.dataset.filter });
+    });
+
+    content.replaceChildren(billboard(bySlug.get(featuredSlug), openDetails), filterBar, status, rowsWrap, grid);
+
+    applyFilter(currentFilter, { announce: false });
+  }
 
   /* One delegated listener opens details for every card (rows and grid). */
   root.addEventListener("click", (event) => {
@@ -654,30 +689,36 @@ export function mountCatalog(root) {
     }
   });
 
-  root.replaceChildren(
-    billboard(bySlug.get(featuredSlug), openDetails),
-    filterBar,
-    status,
-    rowsWrap,
-    grid,
-    dialog
-  );
+  /* The dialog stays outside the re-rendered part, so switching language
+     while it is open doesn't remove it from the top layer. */
+  const content = h("div", { class: "catalog-content" });
+  root.replaceChildren(content, dialog);
 
-  const refreshAll = () => rows.forEach((row) => row._refreshArrows());
-  refreshAll();
-  window.addEventListener("resize", refreshAll, { passive: true });
+  render();
+
+  window.addEventListener("resize", () => rows.forEach((row) => row._refreshArrows()), { passive: true });
 
   /* Deep link: jm.dev.br/#work/arriba-jump opens that title. */
   function openFromHash() {
     const match = location.hash.match(/^#work\/([\w-]+)$/);
     if (match && bySlug.has(match[1])) {
       document.getElementById("work")?.scrollIntoView({ block: "start" });
-      openDetails(match[1]);
+      openDetails(match[1], null, "link");
     }
   }
 
   window.addEventListener("hashchange", openFromHash);
   openFromHash();
+
+  return {
+    setLang(newLang) {
+      if (newLang === lang) return;
+      lang = newLang;
+      const openSlug = currentSlug;
+      render();
+      if (openSlug) fillDialog(dialog, bySlug.get(openSlug), openDetails);
+    }
+  };
 }
 
 export const catalogSize = projects.length;

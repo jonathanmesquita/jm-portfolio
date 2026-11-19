@@ -1,7 +1,6 @@
-Nome;Cidade;UF;Valor
-Ana Ribeiro;Campinas;SP;1250,00
-Bruno Teles;Recife;PE;980,50
-Carla Nunes;Curitiba;PR;2310,75
-Diego Prado;Belém;PA;450,00
-Elisa Moura;Natal;RN;1720,10
-Fábio Lins;Goiânia;GO;860,00
+Nome;Endereço;Cidade;UF;Valor
+Ana Ribeiro;"Rua das Flores, 10; apto 3";Campinas;SP;1250,00
+"Bruno ""Bruninho"" Teles";Av. Boa Viagem, 200;Recife;PE;980,50
+Carla Nunes;"Rua XV de Novembro, 45; sala 2";Curitiba;PR;2310,75
+Diego Prado;Travessa Rui Barbosa, 8;Belém;PA;450,00
+Elisa Moura;"Av. Hermes da Fonseca, 1200; bloco B";Natal;RN;1720,10
