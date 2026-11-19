@@ -316,7 +316,7 @@ export const catalogRows = [
     id: "top",
     title: "Top picks",
     ranked: true,
-    items: ["arriba", "arriba-jump", "cnab-400", "sql-playground", "nexus"]
+    items: ["arriba", "arriba-jump", "cnab-400", "sql-playground"]
   },
   {
     id: "arriba-tools",
