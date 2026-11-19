@@ -1,0 +1,38 @@
+name: CI
+
+# Runs on every pull request and on main: syntax check, production build and
+# the end-to-end tests (catalog behaviour, project pages, axe).
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Syntax check (no compiler here, so node --check plays that role)
+        run: |
+          find src scripts tests -name '*.js' -o -name '*.mjs' | grep -v node_modules | xargs -n1 node --check
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Build and test
+        run: npm test
+
+      - name: npm audit (production dependencies)
+        run: npm audit --omit=dev
