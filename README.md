@@ -2,9 +2,9 @@
 
 Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-Current version: **v1.1.0**
+Current version: **v1.2.0**
 
-Last update: **2026.11.18**
+Last update: **2026.11.19**
 
 ## Objective
 
@@ -34,7 +34,7 @@ Projects are presented like a streaming catalog:
 - **Details dialog** with a looping preview, highlights, stack, live and code links, and
   "More like this". Every title has a shareable link: `jm.dev.br/#work/<slug>`.
 
-17 titles, declared once in `src/data/projects.js`. Posters and previews are recorded from the
+18 titles, declared once in `src/data/projects.js`. Posters and previews are recorded from the
 real projects — see [docs/catalog-media.md](docs/catalog-media.md). Videos load only when a
 preview starts, and nothing autoplays with reduced motion or Save-Data.
 
@@ -47,6 +47,40 @@ Highlights:
 | Project Nexus 2027 | Interactive autobiographical gamebook (React + TypeScript) | 🔒 unlocks soon |
 | Data analysis | Retail and churn studies in Python / Pandas | GitHub |
 | Focus JM | Pomodoro timer connected to Notion | 🔒 unlocks soon |
+
+## Project pages and case studies
+
+Every title also has its own static page, generated at build time from the same data
+(`scripts/pages`, a Vite plugin):
+
+- `jm.dev.br/work/<slug>/` in English and `jm.dev.br/pt/work/<slug>/` in Portuguese;
+- its own 1200×630 social image (`public/og`, `npm run og`), canonical and hreflang, so a
+  link shared on LinkedIn shows that project;
+- for Arriba Platform and Arriba Jump, a case study — problem, key decisions, result,
+  what's next — in `src/data/case-studies.js`, with facts counted from each repository.
+
+## Languages
+
+EN/PT switch in the header. Portuguese browsers start in Portuguese and the choice is
+remembered. The HTML stays in English; `src/i18n.js` translates it by text lookup, and the
+catalog uses `src/data/projects-pt.js` (anything untranslated falls back to English).
+
+## Analytics
+
+Vercel Web Analytics (cookieless). Page views need **Analytics** enabled in the Vercel
+project. Named events — Open title, Filter, Outbound, Language, Copy link — are recorded only
+on plans that include custom events; otherwise they are a no-op. See `src/analytics.js`.
+
+## Tests and CI
+
+```bash
+npm test            # build + end-to-end checks with Chromium and axe
+```
+
+`.github/workflows/ci.yml` runs `node --check`, the tests and `npm audit` on every pull
+request. `.github/workflows/catalog-media.yml` re-records the previews of projects whose
+repository changed, every Monday, and opens a pull request — see
+[docs/catalog-media.md](docs/catalog-media.md).
 
 ## Capabilities
 
@@ -148,27 +182,32 @@ Core principles:
 
 ```text
 jm-portfolio/
-├── docs/
-│   └── catalog-media.md      # how posters and previews are recorded
+├── .github/workflows/        # ci.yml (tests on every PR), catalog-media.yml (weekly media refresh)
+├── docs/                     # catalog-media.md, design-system.md, QA reports
 ├── public/
-│   └── catalog/              # <slug>.webp posters + <slug>.mp4 previews
+│   ├── catalog/              # <slug>.webp posters, <slug>.mp4 previews, sources.lock.json
+│   └── og/                   # 1200×630 social images, en and pt/
 ├── scripts/
-│   └── catalog/              # capture.mjs (Playwright) + encode.sh (ffmpeg)
+│   ├── catalog/              # update.mjs + capture.mjs + titles.json (media pipeline)
+│   ├── og/                   # render-og.mjs (social images)
+│   └── pages/                # Vite plugin: /work/<slug>/ pages and sitemap.xml
 ├── src/
 │   ├── data/
 │   │   ├── capabilities.js
-│   │   └── projects.js       # catalog: titles, rows and filters
-│   ├── styles/
-│   │   ├── base.css
-│   │   ├── catalog.css
-│   │   ├── components.css
-│   │   └── tokens.css
+│   │   ├── case-studies.js   # Problem → decisions → result, en + pt
+│   │   ├── projects.js       # catalog: titles, rows and filters (source)
+│   │   └── projects-pt.js    # Portuguese text for the catalog
+│   ├── styles/               # tokens, base, components, catalog, case
+│   ├── analytics.js
 │   ├── catalog.js
-│   └── main.js
+│   ├── i18n.js
+│   ├── main.js               # home page
+│   ├── project-text.js       # language helpers shared with the page generator
+│   └── work-page.js          # project pages
+├── tests/site.test.mjs       # end-to-end checks (Playwright + axe)
 ├── index.html
-├── package.json
-├── package-lock.json
-└── README.md
+├── vite.config.js
+└── package.json
 ```
 
 ## Version history
@@ -184,6 +223,8 @@ jm-portfolio/
 - `v0.9.0` — Vercel deployment, Git integration and production preparation
 - `v1.0.0` — Production release at `jm.dev.br`
 - `v1.1.0` — Streaming-style project catalog with video previews, self-hosted fonts
+- `v1.2.0` — Case studies, project pages with social images, Portuguese version, analytics,
+  end-to-end tests in CI, automatic media refresh, CSV Reader
 
 ## Roadmap
 
@@ -193,8 +234,8 @@ A dedicated Lab section is intentionally postponed until there are experiments s
 
 ## Status
 
-🟢 Live in production — **v1.0.0** · **v1.1.0** ready on branch
+🟢 Live in production — **v1.1.0** · **v1.2.0** in review
 
 Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
 
-See [QA report](docs/QA-v0.8.0.md) for evidence, limitations and preview checks.
+See the QA reports: [v1.2.0](docs/QA-v1.2.0.md), [v1.1.0](docs/QA-v1.1.0.md), [v0.8.0](docs/QA-v0.8.0.md) for evidence, limitations and preview checks.
