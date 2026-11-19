@@ -131,6 +131,17 @@ export const projectsPt = {
     category: "Ferramenta pequena",
     description: "Converte texto para maiúsculas, minúsculas ou primeira letra maiúscula com um clique."
   },
+  "csv-reader": {
+    title: "Leitor de CSV",
+    category: "Ferramenta pequena",
+    description:
+      "Abre um CSV no navegador e mostra como tabela. Refeito em 2026 com um parser RFC 4180 de verdade: campos entre aspas, aspas escapadas, separador e quebra de linha dentro do campo.",
+    highlights: [
+      "Reconhece ; ou , pela primeira linha, fora das aspas",
+      "Células escritas como texto, nunca como HTML",
+      "Mensagens claras para arquivo vazio, sem separador e linha com número errado de campos"
+    ]
+  },
   "secret-friend": {
     title: "Sorteio de amigo secreto",
     category: "Desafio de curso",

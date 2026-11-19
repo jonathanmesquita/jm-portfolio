@@ -55,6 +55,10 @@
     "repo": "convertor-maiusculas-minusculas",
     "commit": "9ae1cefbcf8edd7dcbd95f68f4151437baf2a011"
   },
+  "csv-reader": {
+    "repo": "leitor-csv",
+    "commit": "81ebf8bec86631ba8c7b75f0937ef2552e771d47"
+  },
   "secret-friend": {
     "repo": "challenge-amigo-secreto",
     "commit": "e08504173b41b62906e7225a3ea72b2a02243168"
