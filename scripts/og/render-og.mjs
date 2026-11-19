@@ -8,7 +8,7 @@
  *
  *   node scripts/og/render-og.mjs
  *
- * Playwright is resolved from the environment (not a dependency of the site).
+ * Playwright comes from devDependencies (falls back to a global install).
  */
 
 import fs from "node:fs";

@@ -2,27 +2,49 @@
  * Records the catalog media (poster screenshot + preview video) by driving
  * each project in a real browser. See docs/catalog-media.md.
  *
- *   REPOS=..  (folder with the project clones, served on :8800)
- *   NEXUS_DIST=../nexus2027/dist  (built Nexus, served on :8801)
- *   node scripts/catalog/capture.mjs [job ...]
+ * Normally called by update.mjs, which serves the clones and builds Nexus
+ * itself. Standalone use, with the clones already served:
  *
- * Output: scripts/catalog/raw/<job>.png and raw/v-<job>/*.webm — inputs for
- * encode.sh. Playwright is not a project dependency on purpose.
+ *   node scripts/catalog/capture.mjs [job ...]
+ *     CATALOG_BASE=http://localhost:8800   (folder with the clones)
+ *     CATALOG_NEXUS=http://localhost:8801  (nexus2027/dist)
+ *
+ * Output: scripts/catalog/raw/<job>.png and raw/v-<job>/*.webm.
+ * Playwright is not a project dependency on purpose: loadPlaywright() finds
+ * a local or global install.
  */
-import { chromium } from 'playwright';
 import { execSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const HERE = path.dirname(new URL(import.meta.url).pathname);
-const OUT = path.join(HERE, 'raw'); fs.mkdirSync(OUT, { recursive: true });
+const HERE = path.dirname(fileURLToPath(import.meta.url));
 /* cdn.jsdelivr.net may be blocked where this runs: packages come from npm instead. */
-const CACHE = path.join(HERE, 'cdn'); fs.mkdirSync(CACHE, { recursive: true });
-const B = 'http://localhost:8800';
-const NX = 'http://localhost:8801';
+const CACHE = path.join(HERE, 'cdn');
+/* Set by capture() before the jobs run; the jobs read them as before. */
+let OUT = path.join(HERE, 'raw');
+let B = 'http://localhost:8800';
+let NX = 'http://localhost:8801';
 const wait = (ms) => new Promise(r => setTimeout(r, ms));
 
+export const VIEWPORTS = { small: { width: 960, height: 540 }, large: { width: 1280, height: 720 } };
+const SMALL = ['base64', 'caixa', 'amigo', 'cartao', 'nexus'];
+export const defaultViewport = (name) => (SMALL.includes(name) ? 'small' : 'large');
+
+/* `playwright` from the project, then PLAYWRIGHT_DIR, then the global npm root. */
+export async function loadPlaywright() {
+  try { return await import('playwright'); } catch {}
+  const roots = [process.env.PLAYWRIGHT_DIR && path.join(process.env.PLAYWRIGHT_DIR, 'node_modules')];
+  try { roots.push(execSync('npm root -g', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()); } catch {}
+  for (const root of roots.filter(Boolean)) {
+    try { return createRequire(path.join(root, 'noop.js'))('playwright'); } catch {}
+  }
+  throw new Error('playwright not found: npm ci && npx playwright install chromium');
+}
+
 function cdnFile(spec, file) {
+  fs.mkdirSync(CACHE, { recursive: true });
   const dir = path.join(CACHE, spec.replace(/[\/@]/g, '_'));
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -43,7 +65,7 @@ async function routeCdn(ctx) {
   });
 }
 
-const jobs = {
+export const jobs = {
 
   async cnab(page) { await page.goto(`${B}/arriba_platform/tools/cobranca/cnab400/cnab400.html`, { waitUntil: 'networkidle' }); await wait(800);
     const opts = await page.$$eval('#bankSelect option', o => o.map(x => x.value).filter(Boolean)); if (opts[0]) await page.selectOption('#bankSelect', opts[0]); await wait(800);
@@ -138,17 +160,41 @@ const jobs = {
   },
 };
 
-const only = process.argv.slice(2);
-const browser = await chromium.launch();
-for (const [name, job] of Object.entries(jobs)) {
-  if (only.length && !only.includes(name)) continue;
-  const small = ['base64','caixa','amigo','cartao','nexus'].includes(name); const vp = small ? { width: 960, height: 540 } : { width: 1280, height: 720 };
-  const ctx = await browser.newContext({ viewport: vp, recordVideo: { dir: `${OUT}/v-${name}`, size: vp } });
-  await routeCdn(ctx);
-  const page = await ctx.newPage();
-  const t0 = Date.now();
-  try { await job(page); } catch (e) { console.error(name, e.message); }
-  await ctx.close();
-  console.log(name, 'ok', Date.now() - t0, 'ms');
+/*
+ * Runs the named jobs (all when empty). Returns { [job]: { ok, ms, error } }.
+ * opts: base, nexusBase, out, viewport(name) -> 'small' | 'large'.
+ */
+export async function capture(names = [], opts = {}) {
+  B = opts.base ?? B; NX = opts.nexusBase ?? NX; OUT = opts.out ?? OUT;
+  fs.mkdirSync(OUT, { recursive: true });
+  const viewport = opts.viewport ?? defaultViewport;
+  for (const n of names) if (!jobs[n]) throw new Error(`unknown capture job: ${n}`);
+  const { chromium } = await loadPlaywright();
+  const results = {};
+  const browser = await chromium.launch();
+  try {
+    for (const [name, job] of Object.entries(jobs)) {
+      if (names.length && !names.includes(name)) continue;
+      const vp = VIEWPORTS[viewport(name)];
+      const ctx = await browser.newContext({ viewport: vp, recordVideo: { dir: `${OUT}/v-${name}`, size: vp } });
+      await routeCdn(ctx);
+      const page = await ctx.newPage();
+      const t0 = Date.now();
+      let error = null;
+      try { await job(page); } catch (e) { error = e.message; console.error(name, e.message); }
+      await ctx.close();
+      results[name] = { ok: !error, ms: Date.now() - t0, error };
+      console.log(name, error ? 'FAILED' : 'ok', Date.now() - t0, 'ms');
+    }
+  } finally {
+    await browser.close();
+  }
+  return results;
 }
-await browser.close();
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  const res = await capture(process.argv.slice(2), {
+    base: process.env.CATALOG_BASE, nexusBase: process.env.CATALOG_NEXUS,
+  });
+  if (Object.values(res).some(r => !r.ok)) process.exitCode = 1;
+}

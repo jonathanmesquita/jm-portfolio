@@ -1,0 +1,90 @@
+# Re-records the catalog media for titles whose source repository changed
+# and opens a pull request with the result. See docs/catalog-media.md.
+name: Catalog media
+
+on:
+  schedule:
+    - cron: "17 9 * * 1" # Mondays, 09:17 UTC
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: "Slugs to re-record, space-separated (empty = only the ones whose source changed)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: catalog-media
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install ffmpeg and ImageMagick
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg imagemagick
+
+      # Playwright comes from devDependencies (also used by `npm test`).
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Record and encode
+        id: update
+        env:
+          SLUGS: ${{ github.event.inputs.slugs }}
+        run: |
+          set -f  # slugs are words, never globs
+          # A title that fails keeps its old media and lock entry; the others
+          # still go to the pull request, and the run is marked failed at the end.
+          if [ -n "$SLUGS" ]; then args="$SLUGS"; else args="--changed"; fi
+          node scripts/catalog/update.mjs $args || echo "failed=1" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UPDATED: ${{ steps.update.outputs.updated }}
+        run: |
+          if [ -z "$(git status --porcelain public/catalog)" ]; then
+            echo "No media changes."
+            exit 0
+          fi
+          slugs="${UPDATED:-sources lock}"
+          branch="catalog-media/$(date -u +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add public/catalog
+          git commit -m "chore(catalog): refresh media for ${slugs}"
+          git push --force origin "$branch"
+          if gh pr view "$branch" --json state -q .state 2>/dev/null | grep -q OPEN; then
+            echo "Pull request for $branch already open; branch updated."
+          else
+            gh pr create --head "$branch" --base "${{ github.event.repository.default_branch }}" \
+              --title "chore(catalog): refresh media for ${slugs}" \
+              --body "Re-recorded catalog media because the source repositories changed: \`${slugs}\`.
+
+          Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          Check the posters and previews before merging. \`public/catalog/sources.lock.json\` records the commit each title was recorded from."
+          fi
+
+      - name: Fail if a title could not be refreshed
+        if: steps.update.outputs.failed == '1'
+        run: |
+          echo "::error::Some titles failed to record; see the 'Record and encode' step."
+          exit 1

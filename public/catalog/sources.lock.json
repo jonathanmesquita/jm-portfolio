@@ -1,0 +1,66 @@
+{
+  "arriba": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "arriba-jump": {
+    "repo": "arriba-jump",
+    "commit": "a84382fa53c2117d79b1c010e9e76eedeae7c77c"
+  },
+  "nexus": {
+    "repo": "nexus2027",
+    "commit": "a85f0388e1f225ec6e61845ec1b8a277ff5a75bb"
+  },
+  "cnab-400": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "csv-validator": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "sql-playground": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "sql-course": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "web-editor": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "dns-checker": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "test-data": {
+    "repo": "arriba_platform",
+    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "store-analysis": {
+    "repo": "Challenge--Alura-Store",
+    "commit": "9ab7c3c3c7106f88bedbbd8e2f916bc72553c491"
+  },
+  "churn-analysis": {
+    "repo": "Challenge-Alura-TelecomXBR",
+    "commit": "01207ec401833d0f8732bd3b1003b6dcb713ebdc"
+  },
+  "base64": {
+    "repo": "DecodificacaoBase64",
+    "commit": "11bc27bef8e8c10b0654f338e5a00fc2c7218579"
+  },
+  "case-converter": {
+    "repo": "convertor-maiusculas-minusculas",
+    "commit": "9ae1cefbcf8edd7dcbd95f68f4151437baf2a011"
+  },
+  "secret-friend": {
+    "repo": "challenge-amigo-secreto",
+    "commit": "e08504173b41b62906e7225a3ea72b2a02243168"
+  },
+  "profile-card": {
+    "repo": "cartao_mesquita",
+    "commit": "c7638af1f72390a6cf572f7a891cdc6e00e5db39"
+  }
+}
