@@ -234,7 +234,7 @@ A dedicated Lab section is intentionally postponed until there are experiments s
 
 ## Status
 
-🟢 Live in production — **v1.1.0** · **v1.2.0** in review
+🟢 Live in production — **v1.2.0**
 
 Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
 
