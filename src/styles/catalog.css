@@ -1,0 +1,1152 @@
+/* ==============================
+   01 / Selected Work — streaming-style catalog
+
+   A full-bleed dark band ("screening room") inside the light page.
+   Rows align with the page container on the left and bleed to the
+   right edge, so a cut-off card signals there is more to scroll.
+   ============================== */
+
+.work {
+  --gutter: max(1rem, calc((100vw - var(--container-width)) / 2));
+  --card-width: clamp(15rem, 24vw, 19.5rem);
+  --card-gap: 0.75rem;
+
+  margin-inline: calc(50% - 50vw);
+
+  padding-block: clamp(4rem, 8vw, 7rem);
+
+  background: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.work > .section-header,
+.work > .work-intro {
+  margin-inline: var(--gutter);
+}
+
+.work .section-header {
+  border-bottom-color: var(--border-on-ink);
+}
+
+.work .section-number,
+.work .section-count {
+  color: var(--color-sand);
+}
+
+.work-intro {
+  max-width: 40rem;
+
+  margin-block: var(--space-md) 0;
+
+  color: var(--color-on-ink-muted);
+}
+
+.work :focus-visible {
+  outline-color: var(--color-sand);
+}
+
+
+/* ==============================
+   Shared buttons on dark
+   ============================== */
+
+.work .button {
+  gap: 0.45rem;
+}
+
+.button-light {
+  background: var(--color-canvas);
+  border-color: var(--color-canvas);
+  color: var(--color-ink);
+
+  font-weight: 600;
+}
+
+.button-ghost {
+  background: rgba(242, 238, 230, 0.12);
+  border-color: rgba(242, 238, 230, 0.32);
+  color: var(--color-canvas);
+}
+
+
+/* ==============================
+   Status badges
+   ============================== */
+
+.title-badge {
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 0.15rem 0.45rem;
+
+  border: 1px solid transparent;
+  border-radius: 2px;
+
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title-badge-live {
+  background: var(--color-clay-on-ink);
+  color: var(--color-ink);
+}
+
+.title-badge-building {
+  background: var(--color-sand);
+  color: var(--color-ink);
+}
+
+.title-badge-archive {
+  border-color: rgba(242, 238, 230, 0.4);
+  color: var(--color-sand);
+}
+
+
+/* ==============================
+   Billboard
+   ============================== */
+
+.billboard {
+  position: relative;
+
+  display: grid;
+  align-items: end;
+
+  min-height: clamp(26rem, 46vw, 34rem);
+
+  margin-block: var(--space-md) var(--space-sm);
+  margin-inline: var(--gutter);
+
+  overflow: hidden;
+
+  border: 1px solid var(--border-on-ink);
+  border-radius: 6px;
+
+  background: #0d1418;
+  isolation: isolate;
+}
+
+.billboard-art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+
+/* Two gradients: one keeps the copy readable, one blends into the band. */
+.billboard::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    linear-gradient(90deg, rgba(13, 20, 24, 0.94) 0%, rgba(13, 20, 24, 0.78) 38%, rgba(13, 20, 24, 0) 72%),
+    linear-gradient(0deg, rgba(27, 29, 26, 0.9) 0%, rgba(27, 29, 26, 0) 45%);
+}
+
+.billboard-copy {
+  max-width: 34rem;
+
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.billboard-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  margin-bottom: var(--space-sm);
+
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+
+  color: var(--color-sand);
+
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.billboard-mark {
+  display: inline-grid;
+  place-items: center;
+
+  width: 1.6rem;
+  height: 1.6rem;
+
+  border-radius: 2px;
+
+  background: var(--color-clay);
+  color: var(--color-canvas);
+
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
+}
+
+.billboard-title {
+  margin-bottom: var(--space-sm);
+
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  font-weight: 700;
+
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+
+  color: var(--color-canvas);
+}
+
+.billboard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.85rem;
+
+  margin-bottom: var(--space-sm);
+
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+
+  color: var(--color-sand);
+}
+
+.billboard-description {
+  margin-bottom: var(--space-md);
+
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+
+  color: var(--color-canvas);
+}
+
+.billboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+
+/* ==============================
+   Genre filters
+   ============================== */
+
+.genre-bar {
+  display: flex;
+  gap: 0.5rem;
+
+  margin-inline: var(--gutter);
+  padding-block: var(--space-sm);
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+}
+
+.genre-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.genre-chip {
+  flex: 0 0 auto;
+
+  min-height: 40px;
+
+  padding: 0.45rem 1rem;
+
+  border: 1px solid rgba(242, 238, 230, 0.32);
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--color-canvas);
+
+  font-size: 0.85rem;
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.genre-chip[aria-pressed="true"] {
+  background: var(--color-canvas);
+  border-color: var(--color-canvas);
+  color: var(--color-ink);
+
+  font-weight: 600;
+}
+
+
+/* ==============================
+   Rows
+   ============================== */
+
+.catalog-rows {
+  display: grid;
+  /* minmax(0, …): otherwise each row grows to its track's full width. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.row-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+
+  margin-inline: var(--gutter);
+}
+
+.row-heading h3 {
+  margin: 0;
+
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 600;
+
+  letter-spacing: -0.02em;
+
+  color: var(--color-canvas);
+}
+
+.row-count {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+
+  color: var(--color-on-ink-muted);
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.row-viewport {
+  position: relative;
+}
+
+.row-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--card-width);
+  gap: var(--card-gap);
+
+  margin: 0;
+
+  /* Vertical room for the hover lift; left edge aligned with the page. */
+  padding-block: 0.9rem 1.4rem;
+  padding-inline: var(--gutter);
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+
+  list-style: none;
+
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--gutter);
+
+  scrollbar-width: none;
+}
+
+.row-track::-webkit-scrollbar {
+  display: none;
+}
+
+.title-item {
+  scroll-snap-align: start;
+}
+
+.row-arrow {
+  position: absolute;
+  top: 0.9rem;
+  bottom: 1.4rem;
+  z-index: 3;
+
+  display: none;
+  place-items: center;
+
+  width: max(2.75rem, calc(var(--gutter) - var(--card-gap)));
+
+  padding: 0;
+
+  border: 0;
+
+  background: rgba(27, 29, 26, 0.72);
+  color: var(--color-canvas);
+
+  font-size: 2.4rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    opacity 160ms ease,
+    background 160ms ease;
+}
+
+.row-arrow-prev {
+  left: 0;
+}
+
+.row-arrow-next {
+  right: 0;
+}
+
+.row-arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ==============================
+   Title card
+   ============================== */
+
+.title-card {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 4px;
+
+  background: var(--color-ink-raised);
+  color: inherit;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 260ms ease;
+}
+
+.title-media {
+  position: relative;
+
+  display: block;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: 4px;
+
+  background: var(--color-ink-raised);
+}
+
+.title-media img,
+.title-media video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+}
+
+.title-media video {
+  opacity: 0;
+
+  transition: opacity 320ms ease;
+}
+
+.title-card.is-previewing video {
+  opacity: 1;
+}
+
+/* Bottom fade so the title stays readable over any poster. */
+.title-media::after {
+  content: "";
+
+  position: absolute;
+  inset: 40% 0 0;
+
+  background: linear-gradient(0deg, rgba(20, 21, 19, 0.96) 0%, rgba(20, 21, 19, 0.72) 45%, rgba(20, 21, 19, 0) 100%);
+
+  transition: opacity 260ms ease;
+}
+
+.title-info {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  display: grid;
+  gap: 0.2rem;
+
+  padding: 0.7rem 0.8rem 0.65rem;
+}
+
+.title-name {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 700;
+
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+
+  color: var(--color-canvas);
+}
+
+.title-meta {
+  overflow: hidden;
+
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+
+  color: var(--color-on-ink-muted);
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  letter-spacing: 0.04em;
+}
+
+.title-card:focus-visible {
+  outline: 2px solid var(--color-canvas);
+  outline-offset: 3px;
+}
+
+.title-placeholder {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.25rem;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(166, 106, 76, 0.45), transparent 60%),
+    radial-gradient(circle at 80% 90%, rgba(95, 109, 85, 0.55), transparent 55%),
+    var(--color-ink-raised);
+}
+
+.title-placeholder-mark {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 800;
+
+  letter-spacing: -0.06em;
+
+  color: var(--color-canvas);
+}
+
+
+/* ==============================
+   Ranked row ("Top picks")
+   ============================== */
+
+.catalog-row-ranked {
+  --card-width: clamp(17rem, 30vw, 24rem);
+}
+
+.title-item-ranked {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-items: end;
+}
+
+.catalog-row-ranked .row-track {
+  grid-auto-columns: calc(var(--card-width) + 3.5rem);
+}
+
+.title-rank {
+  justify-self: end;
+
+  margin-right: -0.5rem;
+
+  font-family: var(--font-heading);
+  font-size: clamp(6rem, 11vw, 9rem);
+  font-weight: 800;
+
+  line-height: 0.75;
+  letter-spacing: -0.08em;
+
+  color: var(--color-ink);
+
+  -webkit-text-stroke: 2px var(--color-clay-on-ink);
+  paint-order: stroke fill;
+
+  user-select: none;
+}
+
+
+/* ==============================
+   Filtered grid
+   ============================== */
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 1.25rem var(--card-gap);
+
+  margin: 0;
+  margin-inline: var(--gutter);
+  padding: 0.9rem 0 0;
+
+  list-style: none;
+}
+
+.catalog-grid[hidden],
+.catalog-rows[hidden] {
+  display: none;
+}
+
+.catalog-fallback {
+  margin-inline: var(--gutter);
+}
+
+.catalog-fallback a {
+  color: var(--color-canvas);
+  text-decoration: underline;
+}
+
+
+/* ==============================
+   Details dialog
+   ============================== */
+
+.title-dialog {
+  width: min(52rem, 100% - 2rem);
+  max-height: min(92dvh, 60rem);
+
+  margin: auto;
+  padding: 0;
+
+  overflow: auto;
+
+  border: 1px solid var(--border-on-ink);
+  border-radius: 8px;
+
+  background: var(--color-ink-raised);
+  color: var(--color-canvas);
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+
+  overscroll-behavior: contain;
+}
+
+.title-dialog::backdrop {
+  background: rgba(8, 9, 8, 0.78);
+}
+
+.title-dialog[open] {
+  animation: dialog-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+.title-dialog :focus-visible {
+  outline-color: var(--color-sand);
+}
+
+.dialog-panel {
+  position: relative;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid rgba(242, 238, 230, 0.32);
+  border-radius: 50%;
+
+  background: rgba(27, 29, 26, 0.85);
+  color: var(--color-canvas);
+
+  font-size: 1.6rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.dialog-media {
+  position: relative;
+
+  aspect-ratio: 16 / 9;
+
+  background: #0d1418;
+}
+
+.dialog-media::after {
+  content: "";
+
+  position: absolute;
+  inset: 70% 0 0;
+
+  background: linear-gradient(0deg, var(--color-ink-raised), rgba(38, 40, 36, 0));
+
+  pointer-events: none;
+}
+
+.dialog-video,
+.dialog-placeholder {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+}
+
+.dialog-placeholder {
+  position: relative;
+}
+
+.dialog-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 14rem);
+  gap: var(--space-md);
+
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem) var(--space-md);
+}
+
+.dialog-main h3 {
+  margin-bottom: var(--space-sm);
+
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+
+  letter-spacing: -0.04em;
+
+  color: var(--color-canvas);
+}
+
+.dialog-description {
+  color: var(--color-canvas);
+}
+
+.dialog-highlights {
+  display: grid;
+  gap: 0.4rem;
+
+  margin: 0 0 var(--space-md);
+  padding-left: 1.1rem;
+
+  color: var(--color-on-ink-muted);
+}
+
+.dialog-highlights li::marker {
+  color: var(--color-clay-on-ink);
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dialog-note {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+
+  color: var(--color-sand);
+}
+
+.dialog-facts {
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+
+  margin: 0;
+  padding-top: 0.4rem;
+
+  font-size: 0.85rem;
+}
+
+.dialog-facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+
+  color: var(--color-on-ink-muted);
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.dialog-facts dd {
+  margin: 0 0 0.75rem;
+
+  color: var(--color-canvas);
+}
+
+.dialog-similar {
+  padding: var(--space-md) clamp(1.25rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2.5rem);
+
+  border-top: 1px solid var(--border-on-ink);
+}
+
+.dialog-similar h4 {
+  margin: 0 0 var(--space-sm);
+
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+
+  color: var(--color-canvas);
+}
+
+.dialog-similar ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.similar-card {
+  display: grid;
+  gap: 0.4rem;
+
+  width: 100%;
+
+  padding: 0;
+
+  border: 0;
+
+  background: none;
+  color: var(--color-canvas);
+
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.similar-card img {
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 16 / 9;
+
+  object-fit: cover;
+  object-position: top center;
+
+  border-radius: 4px;
+}
+
+
+/* ==============================
+   Hover-capable devices
+   ============================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .row-arrow {
+    display: grid;
+
+    opacity: 0;
+  }
+
+  .row-viewport:hover .row-arrow:not(:disabled),
+  .row-arrow:focus-visible {
+    opacity: 1;
+  }
+
+  .row-arrow:hover {
+    background: rgba(27, 29, 26, 0.9);
+  }
+
+  .title-card:hover,
+  .title-card:focus-visible {
+    z-index: 2;
+
+    transform: scale(1.06);
+
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .genre-chip:hover {
+    border-color: var(--color-canvas);
+  }
+
+  .genre-chip[aria-pressed="false"]:hover {
+    background: rgba(242, 238, 230, 0.1);
+  }
+
+  .button-light:hover {
+    background: var(--color-sand);
+    border-color: var(--color-sand);
+  }
+
+  .button-ghost:hover {
+    background: rgba(242, 238, 230, 0.22);
+  }
+
+  .similar-card:hover span {
+    text-decoration: underline;
+  }
+
+  .dialog-close:hover {
+    background: var(--color-ink);
+  }
+}
+
+/* Keyboard users on touch-first devices still get the focus lift. */
+.title-card:focus-visible {
+  z-index: 2;
+}
+
+
+/* ==============================
+   Small screens
+   ============================== */
+
+@media (max-width: 720px) {
+  .work {
+    --card-width: min(72vw, 17rem);
+  }
+
+  .catalog-row-ranked {
+    --card-width: min(64vw, 16rem);
+  }
+
+  .billboard {
+    min-height: 0;
+
+    margin-inline: 0;
+
+    border-inline: 0;
+    border-radius: 0;
+  }
+
+  .billboard-art {
+    position: relative;
+
+    height: auto;
+
+    aspect-ratio: 16 / 9;
+
+    object-position: 80% 50%;
+  }
+
+  .billboard::before {
+    inset: 0 0 auto;
+
+    aspect-ratio: 16 / 9;
+
+    background: linear-gradient(0deg, #0d1418 0%, rgba(13, 20, 24, 0) 60%);
+  }
+
+  .billboard-copy {
+    margin-top: -3rem;
+    padding: 0 1rem 1.5rem;
+  }
+
+  .billboard-actions .button {
+    flex: 1 1 auto;
+  }
+
+  .dialog-body {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .dialog-similar ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dialog-similar li:nth-child(3) {
+    display: none;
+  }
+}
+
+
+/* ==============================
+   Reduced motion
+   ============================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .title-card:hover,
+  .title-card:focus-visible {
+    transform: none;
+  }
+
+  .title-dialog[open] {
+    animation: none;
+  }
+}
+
+
+/* ==============================
+   Locked titles ("Unlocks soon")
+
+   Projects still being built: the art is blurred and dimmed, a padlock
+   sits on top, and the card never plays a preview. Unlocking is a data
+   change (status "building" → "live"), not a style change.
+   ============================== */
+
+.title-card.is-locked .title-media img,
+.dialog-locked img {
+  filter: blur(3px) grayscale(0.25) brightness(0.9) contrast(1.1);
+
+  /* The blur would show soft edges at the border. */
+  transform: scale(1.08);
+}
+
+.lock-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.45rem;
+
+  /* Sits above the bottom title fade, below the title text. */
+  padding-bottom: 2.6rem;
+
+  color: var(--color-canvas);
+}
+
+.lock-icon {
+  width: 2.1rem;
+  height: 2.1rem;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.lock-text {
+  padding: 0.2rem 0.55rem;
+
+  border: 1px solid rgba(242, 238, 230, 0.4);
+  border-radius: 999px;
+
+  background: rgba(20, 21, 19, 0.7);
+
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.title-card.is-locked .title-name {
+  color: var(--color-sand);
+}
+
+/* Locked cards still open their teaser, so the lift stays — just calmer. */
+@media (hover: hover) and (pointer: fine) {
+  .title-card.is-locked:hover .lock-icon,
+  .title-card.is-locked:focus-visible .lock-icon {
+    animation: lock-shake 420ms ease;
+  }
+}
+
+@keyframes lock-shake {
+  20%,
+  60% {
+    transform: rotate(-9deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(9deg);
+  }
+}
+
+.dialog-locked {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.dialog-locked img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+}
+
+.dialog-locked .lock-overlay {
+  padding-bottom: 0;
+}
+
+.dialog-locked .lock-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.dialog-locked .lock-text {
+  font-size: 0.72rem;
+}
+
+.dialog-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dialog-note .lock-icon {
+  flex: 0 0 auto;
+
+  width: 1.1rem;
+  height: 1.1rem;
+
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-card.is-locked .lock-icon {
+    animation: none !important;
+  }
+}
+
+/* The padlock replaces the "JM." mark on titles without art yet. */
+.title-card.is-locked .title-placeholder-mark,
+.dialog-locked .title-placeholder-mark {
+  visibility: hidden;
+}

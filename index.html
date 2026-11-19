@@ -9,7 +9,7 @@
   <title>Jonathan Mesquita | Full-Stack Developer</title>
 
   <meta name="description"
-    content="Portfolio of Jonathan Mesquita, a developer building practical web products with JavaScript, Node.js, SQL and APIs." />
+    content="Portfolio of Jonathan Mesquita, a developer building practical web products with JavaScript, Node.js, SQL and APIs. Browse live projects with video previews." />
 
   <meta name="author" content="Jonathan Mesquita" />
 
@@ -82,7 +82,13 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Jonathan Mesquita",
+        "jobTitle": "Full-Stack Developer",
         "url": "https://jm.dev.br/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "São Paulo",
+          "addressCountry": "BR"
+        },
         "sameAs": [
           "https://github.com/jonathanmesquita",
           "https://www.linkedin.com/in/jonathanmesquita"
@@ -195,22 +201,35 @@
              01 / Selected Work
              ============================== -->
 
-      <section class="work" id="work">
+      <section class="work" id="work" aria-labelledby="work-heading">
         <header class="section-header">
           <span class="section-number">
             01
           </span>
 
-          <h2>
+          <h2 id="work-heading">
             Selected Work
           </h2>
 
-          <span class="section-count">
-            01 — 02
+          <span class="section-count" id="work-count">
+            Catalog
           </span>
         </header>
 
-        <div class="projects" id="projects"></div>
+        <p class="work-intro">
+          Browse it like a streaming catalog: hover a title for a silent preview,
+          open it for the story, the stack and the links.
+        </p>
+
+        <div class="catalog" id="catalog">
+          <noscript>
+            <ul class="catalog-fallback">
+              <li><a href="https://arriba.jm.dev.br">Arriba Platform ↗</a></li>
+              <li><a href="https://arriba-jump.jm.dev.br">Arriba Jump ↗</a></li>
+              <li><a href="https://github.com/jonathanmesquita">All projects on GitHub ↗</a></li>
+            </ul>
+          </noscript>
+        </div>
       </section>
 
       <!-- ==============================
@@ -572,11 +591,11 @@
       </span>
 
       <span>
-        V0.9.0
+        V1.1.0
       </span>
 
       <span>
-        UPDATED 2026.11.05
+        UPDATED 2026.11.18
       </span>
     </footer>
   </div>

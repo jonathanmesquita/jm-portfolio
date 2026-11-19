@@ -10,3 +10,7 @@ Thumbs.db
 .idea/
 .vercel
 .env*
+
+# Catalog capture scratch (scripts/catalog)
+scripts/catalog/raw/
+scripts/catalog/cdn/

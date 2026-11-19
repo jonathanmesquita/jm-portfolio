@@ -1,103 +1,20 @@
+import "@fontsource-variable/inter";
+import "@fontsource-variable/manrope";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/components.css";
+import "./styles/catalog.css";
 
-import { projects } from "./data/projects.js";
+import { mountCatalog, catalogSize } from "./catalog.js";
 import { capabilities } from "./data/capabilities.js";
 
-const projectsContainer = document.querySelector("#projects");
+const catalogRoot = document.querySelector("#catalog");
+const workCount = document.querySelector("#work-count");
 const capabilitiesContainer = document.querySelector("#capabilities-list");
 const backToTopButton = document.querySelector("#back-to-top");
-
-function renderProjects() {
-  if (!projectsContainer) return;
-
-  projectsContainer.innerHTML = projects
-    .map(
-      (project) => `
-        <article
-          class="project ${project.featured ? "project-featured" : ""}"
-        >
-          <div class="project-index">
-            ${project.id}
-          </div>
-
-          <div class="project-content">
-            ${
-              project.featured
-                ? `
-                  <span class="project-featured-label">
-                    Featured project
-                  </span>
-                `
-                : ""
-            }
-
-            <div class="project-meta">
-              <span>
-                ${project.category}
-              </span>
-
-              <span>
-                ${project.year}
-              </span>
-            </div>
-
-            <h3>
-              ${project.title}
-            </h3>
-
-            <p class="project-description">
-              ${project.description}
-            </p>
-
-            <ul class="project-stack">
-              ${project.stack
-                .map(
-                  (technology) => `
-                    <li>
-                      ${technology}
-                    </li>
-                  `
-                )
-                .join("")}
-            </ul>
-          </div>
-
-          <div class="project-actions">
-            <span class="project-status">
-              <span
-                class="project-status-dot"
-                aria-hidden="true"
-              ></span>
-
-              ${project.status}
-            </span>
-
-            ${
-              project.liveUrl
-                ? `
-                  <a
-                    class="project-link"
-                    href="${project.liveUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View project ↗
-                  </a>
-                `
-                : `
-                  <span class="project-coming">
-                    In development
-                  </span>
-                `
-            }
-          </div>
-        </article>
-      `
-    )
-    .join("");
-}
 
 function renderCapabilities() {
   if (!capabilitiesContainer) return;
@@ -184,7 +101,9 @@ function scrollToTop() {
   });
 }
 
-renderProjects();
+mountCatalog(catalogRoot);
+
+if (workCount) workCount.textContent = `${catalogSize} titles`;
 renderCapabilities();
 
 if (backToTopButton) {
