@@ -7,6 +7,8 @@
  * docs/catalog-media.md.
  *
  * status: "live" | "building" | "archive"
+ *   "building" renders the title locked: blurred poster, padlock, no preview,
+ *   no links. Switching it to "live" unlocks it — nothing else to change.
  * genres: used by the filter chips — "web", "tool", "game", "data"
  */
 
@@ -320,7 +322,7 @@ export const catalogRows = [
   },
   {
     id: "soon",
-    title: "Coming soon",
+    title: "Unlocking soon",
     items: ["focus-jm", "nexus"]
   }
 ];
@@ -331,5 +333,5 @@ export const genreFilters = [
   { id: "tool", label: "Tools" },
   { id: "game", label: "Games" },
   { id: "data", label: "Data" },
-  { id: "building", label: "In progress" }
+  { id: "building", label: "Unlocks soon" }
 ];

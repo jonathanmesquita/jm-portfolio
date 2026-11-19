@@ -554,16 +554,6 @@
   color: var(--color-canvas);
 }
 
-.title-placeholder-text {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-
-  color: var(--color-sand);
-
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-}
-
 
 /* ==============================
    Ranked row ("Top picks")
@@ -1014,4 +1004,149 @@
   .title-dialog[open] {
     animation: none;
   }
+}
+
+
+/* ==============================
+   Locked titles ("Unlocks soon")
+
+   Projects still being built: the art is blurred and dimmed, a padlock
+   sits on top, and the card never plays a preview. Unlocking is a data
+   change (status "building" → "live"), not a style change.
+   ============================== */
+
+.title-card.is-locked .title-media img,
+.dialog-locked img {
+  filter: blur(6px) grayscale(0.6) brightness(0.55);
+
+  /* The blur would show soft edges at the border. */
+  transform: scale(1.08);
+}
+
+.lock-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.45rem;
+
+  /* Sits above the bottom title fade, below the title text. */
+  padding-bottom: 2.6rem;
+
+  color: var(--color-canvas);
+}
+
+.lock-icon {
+  width: 2.1rem;
+  height: 2.1rem;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.lock-text {
+  padding: 0.2rem 0.55rem;
+
+  border: 1px solid rgba(242, 238, 230, 0.4);
+  border-radius: 999px;
+
+  background: rgba(20, 21, 19, 0.7);
+
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.title-card.is-locked .title-name {
+  color: var(--color-sand);
+}
+
+/* Locked cards still open their teaser, so the lift stays — just calmer. */
+@media (hover: hover) and (pointer: fine) {
+  .title-card.is-locked:hover .lock-icon,
+  .title-card.is-locked:focus-visible .lock-icon {
+    animation: lock-shake 420ms ease;
+  }
+}
+
+@keyframes lock-shake {
+  20%,
+  60% {
+    transform: rotate(-9deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(9deg);
+  }
+}
+
+.dialog-locked {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.dialog-locked img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+}
+
+.dialog-locked .lock-overlay {
+  padding-bottom: 0;
+}
+
+.dialog-locked .lock-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.dialog-locked .lock-text {
+  font-size: 0.72rem;
+}
+
+.dialog-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dialog-note .lock-icon {
+  flex: 0 0 auto;
+
+  width: 1.1rem;
+  height: 1.1rem;
+
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-card.is-locked .lock-icon {
+    animation: none !important;
+  }
+}
+
+/* The padlock replaces the "JM." mark on titles without art yet. */
+.title-card.is-locked .title-placeholder-mark,
+.dialog-locked .title-placeholder-mark {
+  visibility: hidden;
 }

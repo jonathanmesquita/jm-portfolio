@@ -18,7 +18,7 @@ const PREVIEW_DELAY_MS = 450;
 
 const STATUS_LABEL = {
   live: "Live",
-  building: "Building",
+  building: "Locked",
   archive: "Archive"
 };
 
@@ -69,12 +69,47 @@ function statusBadge(project) {
   );
 }
 
-function placeholderPoster(project) {
+/* Projects still being built are shown locked: blurred art, a padlock,
+   no preview and no links until they ship. */
+function isLocked(project) {
+  return project.status === "building";
+}
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+
+function lockIcon() {
+  const svg = document.createElementNS(SVG_NS, "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  svg.classList.add("lock-icon");
+
+  const shackle = document.createElementNS(SVG_NS, "path");
+  shackle.setAttribute("d", "M7.5 10.5V7.75a4.5 4.5 0 0 1 9 0v2.75");
+  const body = document.createElementNS(SVG_NS, "rect");
+  Object.entries({ x: "4.5", y: "10.5", width: "15", height: "10.5", rx: "2" })
+    .forEach(([key, value]) => body.setAttribute(key, value));
+  const keyhole = document.createElementNS(SVG_NS, "path");
+  keyhole.setAttribute("d", "M12 14.5v2.5");
+
+  svg.append(shackle, body, keyhole);
+  return svg;
+}
+
+function lockOverlay() {
+  return h(
+    "span",
+    { class: "lock-overlay", "aria-hidden": "true" },
+    lockIcon(),
+    h("span", { class: "lock-text" }, "Unlocks soon")
+  );
+}
+
+function placeholderPoster() {
   return h(
     "span",
     { class: "title-placeholder", "aria-hidden": "true" },
-    h("span", { class: "title-placeholder-mark" }, "JM."),
-    h("span", { class: "title-placeholder-text" }, "Coming soon")
+    h("span", { class: "title-placeholder-mark" }, "JM.")
   );
 }
 
@@ -106,6 +141,8 @@ function stopPreview(card) {
 }
 
 function titleCard(project, { rank } = {}) {
+  const locked = isLocked(project);
+
   const media = project.media
     ? [
         h("img", {
@@ -116,7 +153,7 @@ function titleCard(project, { rank } = {}) {
           loading: "lazy",
           decoding: "async"
         }),
-        project.media.video
+        project.media.video && !locked
           ? h("video", {
               "data-src": mediaUrl(project.media.video, "mp4"),
               muted: true,
@@ -128,13 +165,15 @@ function titleCard(project, { rank } = {}) {
             })
           : null
       ]
-    : [placeholderPoster(project)];
+    : [placeholderPoster()];
+
+  if (locked) media.push(lockOverlay());
 
   const card = h(
     "button",
     {
       type: "button",
-      class: "title-card",
+      class: `title-card${locked ? " is-locked" : ""}`,
       "aria-haspopup": "dialog",
       dataset: { slug: project.slug }
     },
@@ -360,6 +399,7 @@ function similarTo(project) {
       (other) =>
         other.slug !== project.slug &&
         other.media &&
+        !isLocked(other) &&
         other.genres.some((genre) => project.genres.includes(genre))
     )
     .slice(0, 3);
@@ -367,8 +407,23 @@ function similarTo(project) {
 
 function fillDialog(dialog, project, openDetails) {
   const allowAutoplay = canAutoplayPreview();
+  const locked = isLocked(project);
 
-  const media = project.media
+  const media = locked
+    ? h(
+        "div",
+        { class: "dialog-locked" },
+        project.media
+          ? h("img", {
+              src: mediaUrl(project.media.poster, "webp"),
+              alt: "",
+              width: "640",
+              height: "360"
+            })
+          : placeholderPoster(),
+        lockOverlay()
+      )
+    : project.media
     ? h("video", {
         class: "dialog-video",
         src: mediaUrl(project.media.video, "mp4"),
@@ -383,9 +438,9 @@ function fillDialog(dialog, project, openDetails) {
         height: "360",
         "aria-label": `Silent preview of ${project.title}`
       })
-    : h("div", { class: "dialog-placeholder" }, placeholderPoster(project));
+    : h("div", { class: "dialog-placeholder" }, placeholderPoster());
 
-  const actions = [
+  const actions = locked ? [] : [
     project.links.live ? linkButton(project.links.live, "Open live", "button-light") : null,
     project.links.code ? linkButton(project.links.code, "View code", "button-ghost") : null
   ].filter(Boolean);
@@ -431,7 +486,12 @@ function fillDialog(dialog, project, openDetails) {
             : null,
           actions.length
             ? h("div", { class: "dialog-actions" }, actions)
-            : h("p", { class: "dialog-note" }, "In development — not public yet.")
+            : h(
+                "p",
+                { class: "dialog-note" },
+                lockIcon(),
+                "Still in the workshop. This title unlocks as soon as it ships."
+              )
         ),
         h(
           "dl",
@@ -439,7 +499,7 @@ function fillDialog(dialog, project, openDetails) {
           h("dt", {}, "Stack"),
           h("dd", {}, project.stack.join(" · ")),
           h("dt", {}, "Status"),
-          h("dd", {}, STATUS_LABEL[project.status])
+          h("dd", {}, locked ? "Locked · in development" : STATUS_LABEL[project.status])
         )
       ),
       similar.length

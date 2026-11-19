@@ -24,10 +24,13 @@ Centralize my professional presence at `jm.dev.br` and organize independent proj
 Projects are presented like a streaming catalog:
 
 - **Billboard** with the featured project (Arriba Platform).
-- **Genre filters** — All, Live now, Tools, Games, Data, In progress.
+- **Genre filters** — All, Live now, Tools, Games, Data, Unlocks soon.
 - **Rows** that scroll sideways: Top picks, Inside Arriba Platform, Games & interactive
-  stories, Data analysis with Python, Where it started, Coming soon.
+  stories, Data analysis with Python, Where it started, Unlocking soon.
 - **Title cards** that play a silent preview on hover or keyboard focus.
+- **Locked titles** — projects still being built (Project Nexus 2027, Focus JM) show a blurred
+  poster with a padlock and "Unlocks soon": no preview, no links. Changing `status` from
+  `"building"` to `"live"` in `src/data/projects.js` unlocks them.
 - **Details dialog** with a looping preview, highlights, stack, live and code links, and
   "More like this". Every title has a shareable link: `jm.dev.br/#work/<slug>`.
 
@@ -41,9 +44,9 @@ Highlights:
 |---|---|---|
 | Arriba Platform | Browser-based technical tools: CNAB 400, CSV, SQL sandbox, editor, AI chat | `arriba.jm.dev.br` |
 | Arriba Jump | Pixel-art runner across São Paulo, plain JavaScript | `arriba-jump.jm.dev.br` |
-| Project Nexus 2027 | Interactive autobiographical gamebook (React + TypeScript) | in development |
+| Project Nexus 2027 | Interactive autobiographical gamebook (React + TypeScript) | 🔒 unlocks soon |
 | Data analysis | Retail and churn studies in Python / Pandas | GitHub |
-| Focus JM | Pomodoro timer connected to Notion | in development |
+| Focus JM | Pomodoro timer connected to Notion | 🔒 unlocks soon |
 
 ## Capabilities
 
