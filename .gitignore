@@ -14,3 +14,7 @@ Thumbs.db
 # Catalog capture scratch (scripts/catalog)
 scripts/catalog/raw/
 scripts/catalog/cdn/
+
+# Project pages generated at build time (scripts/pages)
+/work/
+/pt/

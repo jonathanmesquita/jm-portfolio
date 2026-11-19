@@ -1,0 +1,367 @@
+/* ==============================
+   Project pages (/work/<slug>/)
+
+   The whole page is the dark "screening room" of the catalog, so moving
+   from the details dialog to the page feels like the same place.
+   ============================== */
+
+.case-page {
+  --gutter: max(1rem, calc((100vw - var(--container-width)) / 2));
+
+  background: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.case-page p {
+  color: var(--color-on-ink-muted);
+}
+
+.case-page :focus-visible {
+  outline-color: var(--color-sand);
+}
+
+.case-page .skip-link {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.case-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+
+  padding: 1rem var(--gutter);
+
+  border-bottom: 1px solid var(--border-on-ink);
+}
+
+.case-header .brand {
+  color: var(--color-canvas);
+}
+
+.case-header .brand span {
+  color: var(--color-clay-on-ink);
+}
+
+.case-back {
+  margin-right: auto;
+
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+
+  color: var(--color-sand);
+}
+
+.case-page .lang-switch {
+  display: inline-grid;
+  place-items: center;
+
+  border-color: var(--border-on-ink);
+
+  color: var(--color-canvas);
+}
+
+/* ---------- Hero ---------- */
+
+.case-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+
+  padding: clamp(2.5rem, 6vw, 5rem) var(--gutter);
+}
+
+.case-hero h1 {
+  margin-bottom: var(--space-sm);
+
+  font-size: clamp(2.6rem, 6vw, 4.75rem);
+  font-weight: 700;
+
+  line-height: 0.95;
+
+  color: var(--color-canvas);
+}
+
+.case-description {
+  margin-bottom: var(--space-md);
+
+  font-size: 1.05rem;
+}
+
+.case-page .case-description {
+  color: var(--color-canvas);
+}
+
+.case-media {
+  overflow: hidden;
+
+  border: 1px solid var(--border-on-ink);
+  border-radius: 8px;
+
+  background: #0d1418;
+
+  aspect-ratio: 16 / 9;
+}
+
+.case-video,
+.case-locked img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+}
+
+.case-locked {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.case-locked img {
+  filter: blur(3px) grayscale(0.25) brightness(0.9) contrast(1.1);
+  transform: scale(1.08);
+}
+
+.case-locked .lock-overlay {
+  padding-bottom: 0;
+}
+
+.case-locked .lock-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* ---------- Body ---------- */
+
+.case-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
+  gap: clamp(2rem, 5vw, 5rem);
+
+  padding: 0 var(--gutter) clamp(3rem, 6vw, 5rem);
+}
+
+.case-body {
+  max-width: 46rem;
+}
+
+.case-lead {
+  margin-bottom: var(--space-lg);
+
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  font-weight: 500;
+
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.case-page .case-lead {
+  color: var(--color-canvas);
+}
+
+.case-section {
+  padding-block: var(--space-md);
+
+  border-top: 1px solid var(--border-on-ink);
+}
+
+.case-section h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+
+  margin-bottom: var(--space-sm);
+
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+
+  letter-spacing: -0.03em;
+
+  color: var(--color-canvas);
+}
+
+.case-section h2 span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+
+  color: var(--color-clay-on-ink);
+
+  letter-spacing: 0.08em;
+}
+
+.case-page code {
+  padding: 0.05rem 0.3rem;
+
+  border-radius: 3px;
+
+  background: rgba(242, 238, 230, 0.1);
+  color: var(--color-canvas);
+
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.case-decisions {
+  display: grid;
+  gap: 0.75rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+  counter-reset: decision;
+}
+
+.case-decisions li {
+  position: relative;
+
+  padding: 1.1rem 1.25rem 1.1rem 3.25rem;
+
+  border: 1px solid var(--border-on-ink);
+  border-radius: 6px;
+
+  background: var(--color-ink-raised);
+
+  counter-increment: decision;
+}
+
+.case-decisions li::before {
+  content: counter(decision, decimal-leading-zero);
+
+  position: absolute;
+  top: 1.2rem;
+  left: 1.1rem;
+
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+
+  color: var(--color-clay-on-ink);
+}
+
+.case-decisions h3 {
+  margin-bottom: 0.35rem;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  color: var(--color-canvas);
+}
+
+.case-decisions p {
+  margin: 0;
+}
+
+.case-results {
+  display: grid;
+  gap: 0.5rem;
+
+  margin: 0;
+  padding-left: 1.1rem;
+
+  color: var(--color-on-ink-muted);
+}
+
+.case-results li::marker {
+  color: var(--color-clay-on-ink);
+}
+
+.case-facts {
+  align-self: start;
+
+  position: sticky;
+  top: 1.5rem;
+
+  padding-top: var(--space-md);
+}
+
+/* ---------- More projects ---------- */
+
+.case-more {
+  padding: var(--space-md) var(--gutter) var(--space-lg);
+
+  border-top: 1px solid var(--border-on-ink);
+}
+
+.case-more h2 {
+  margin-bottom: var(--space-sm);
+
+  font-size: 1.3rem;
+  font-weight: 600;
+
+  color: var(--color-canvas);
+}
+
+.case-more-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.case-footer {
+  padding-inline: var(--gutter);
+
+  border-top-color: var(--border-on-ink);
+
+  color: var(--color-sand);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-back:hover {
+    color: var(--color-canvas);
+  }
+
+  .similar-card:hover img {
+    outline: 2px solid var(--color-sand);
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 860px) {
+  .case-hero,
+  .case-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .case-media {
+    order: -1;
+  }
+
+  .case-facts {
+    position: static;
+
+    padding-top: 0;
+  }
+
+  .case-more-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-more-list li:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .case-header {
+    gap: var(--space-sm);
+  }
+
+  .case-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
