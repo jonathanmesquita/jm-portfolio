@@ -1017,7 +1017,7 @@
 
 .title-card.is-locked .title-media img,
 .dialog-locked img {
-  filter: blur(6px) grayscale(0.6) brightness(0.55);
+  filter: blur(3px) grayscale(0.25) brightness(0.9) contrast(1.1);
 
   /* The blur would show soft edges at the border. */
   transform: scale(1.08);
