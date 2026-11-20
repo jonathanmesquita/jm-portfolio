@@ -98,6 +98,16 @@
         "duration": 7
       },
       "poster": "massa"
+    },
+    "focus-jm": {
+      "repo": "focus-jm",
+      "job": "focus",
+      "viewport": "small",
+      "video": {
+        "start": 0.8,
+        "duration": 10
+      },
+      "poster": "focus"
     }
   }
 }

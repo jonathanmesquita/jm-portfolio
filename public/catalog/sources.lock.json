@@ -34,5 +34,9 @@
   "test-data": {
     "repo": "arriba_platform",
     "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+  },
+  "focus-jm": {
+    "repo": "focus-jm",
+    "commit": "a2b5f583c764b0441a5fc644a76a6d9c7be7e6c1"
   }
 }

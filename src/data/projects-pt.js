@@ -111,7 +111,7 @@ export const projectsPt = {
 export const rowsPt = {
   top: "Destaques",
   "arriba-tools": "Por dentro da Arriba Platform",
-  soon: "Desbloqueia em breve"
+  more: "Mais projetos"
 };
 
 export const filtersPt = {

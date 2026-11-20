@@ -2,9 +2,9 @@
 
 Professional developer portfolio for **Jonathan Mesquita**, focused on software development, technical experience and practical projects.
 
-Current version: **v1.2.0**
+Current version: **v1.3.0**
 
-Last update: **2026.11.19**
+Last update: **2026.11.20**
 
 ## Objective
 
@@ -25,9 +25,9 @@ Projects are presented like a streaming catalog:
 
 - **Billboard** with the featured project (Arriba Platform).
 - **Genre filters** — All, Live now, Tools, Games, Data, Unlocks soon.
-- **Rows** that scroll sideways: Top picks, Inside Arriba Platform, Unlocking soon.
+- **Rows** that scroll sideways: Top picks, Inside Arriba Platform, More projects.
 - **Title cards** that play a silent preview on hover or keyboard focus.
-- **Locked titles** — projects still being built (today, Focus JM) show a blurred
+- **Locked titles** — projects still being built (none right now) show a blurred
   poster with a padlock and "Unlocks soon": no preview, no links. Changing `status` from
   `"building"` to `"live"` in `src/data/projects.js` unlocks them.
 - **Details dialog** with a looping preview, highlights, stack, live and code links, and
@@ -43,7 +43,7 @@ Highlights:
 |---|---|---|
 | Arriba Platform | Browser-based technical tools: CNAB 400, CSV, SQL sandbox, editor, AI chat | `arriba.jm.dev.br` |
 | Arriba Jump | Pixel-art runner across São Paulo, plain JavaScript | `arriba-jump.jm.dev.br` |
-| Focus JM | Pomodoro timer connected to Notion | 🔒 unlocks soon |
+| Focus JM | Small Pomodoro timer, works inside Notion as an embed | `focus.jm.dev.br` |
 
 ## Project pages and case studies
 
@@ -222,6 +222,7 @@ jm-portfolio/
 - `v1.1.0` — Streaming-style project catalog with video previews, self-hosted fonts
 - `v1.2.0` — Case studies, project pages with social images, Portuguese version, analytics,
   end-to-end tests in CI, automatic media refresh, CSV Reader
+- `v1.3.0` — Focus JM released; leaner catalog after removing deleted study repositories
 
 ## Roadmap
 
@@ -231,7 +232,7 @@ A dedicated Lab section is intentionally postponed until there are experiments s
 
 ## Status
 
-🟢 Live in production — **v1.2.0**
+🟢 Live in production — **v1.3.0**
 
 Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
 
