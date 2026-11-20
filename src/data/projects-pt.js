@@ -97,20 +97,6 @@ export const projectsPt = {
       "Gera de novo a cada opção mudada, nunca mostra dado velho"
     ]
   },
-  "store-analysis": {
-    title: "Análise de desempenho de lojas",
-    category: "Análise de dados",
-    description:
-      "Compara quatro lojas de uma rede por faturamento, categoria, avaliação dos clientes e custo de frete para recomendar qual vender.",
-    highlights: ["Análise exploratória num notebook Jupyter", "Gráficos com Matplotlib"]
-  },
-  "churn-analysis": {
-    title: "Análise de evasão de clientes",
-    category: "Análise de dados",
-    description:
-      "Investiga por que clientes de uma operadora cancelam, cruzando dados de contrato, demográficos e de cobrança para achar padrões de evasão.",
-    highlights: ["Limpeza e inspeção dos dados", "Análise de distribuição com Seaborn"]
-  },
   "focus-jm": {
     category: "Produtividade / Notion",
     description: "Um timer Pomodoro para estudar sem distração, ligado ao meu fluxo no Notion."
@@ -120,7 +106,6 @@ export const projectsPt = {
 export const rowsPt = {
   top: "Destaques",
   "arriba-tools": "Por dentro da Arriba Platform",
-  data: "Análise de dados com Python",
   soon: "Desbloqueia em breve"
 };
 

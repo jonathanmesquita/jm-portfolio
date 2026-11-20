@@ -175,34 +175,6 @@ export const projects = [
     media: { poster: "test-data", video: "test-data" }
   },
   {
-    slug: "store-analysis",
-    title: "Store Performance Analysis",
-    category: "Data analysis",
-    year: "2025",
-    status: "archive",
-    genres: ["data"],
-    description:
-      "Compares four stores of a retail chain by revenue, category, customer rating and shipping cost to recommend which one to sell.",
-    highlights: ["Exploratory analysis in a Jupyter notebook", "Charts with Matplotlib"],
-    stack: ["Python", "Pandas", "Matplotlib", "Jupyter"],
-    links: { live: null, code: `${GITHUB}/Challenge--Alura-Store` },
-    media: { poster: "store-analysis", video: "store-analysis" }
-  },
-  {
-    slug: "churn-analysis",
-    title: "Customer Churn Analysis",
-    category: "Data analysis",
-    year: "2025",
-    status: "archive",
-    genres: ["data"],
-    description:
-      "Investigates why telecom customers cancel, crossing contract, demographic and billing data to find churn patterns.",
-    highlights: ["Data cleaning and feature inspection", "Distribution analysis with Seaborn"],
-    stack: ["Python", "Pandas", "Seaborn", "Jupyter"],
-    links: { live: null, code: `${GITHUB}/Challenge-Alura-TelecomXBR` },
-    media: { poster: "churn-analysis", video: "churn-analysis" }
-  },
-  {
     slug: "focus-jm",
     title: "Focus JM",
     category: "Productivity / Notion",
@@ -231,11 +203,6 @@ export const catalogRows = [
     id: "arriba-tools",
     title: "Inside Arriba Platform",
     items: ["cnab-400", "csv-validator", "sql-playground", "sql-course", "web-editor", "dns-checker", "test-data"]
-  },
-  {
-    id: "data",
-    title: "Data analysis with Python",
-    items: ["store-analysis", "churn-analysis", "sql-course"]
   },
   {
     id: "soon",

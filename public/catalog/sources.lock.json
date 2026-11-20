@@ -34,13 +34,5 @@
   "test-data": {
     "repo": "arriba_platform",
     "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
-  },
-  "store-analysis": {
-    "repo": "Challenge--Alura-Store",
-    "commit": "9ab7c3c3c7106f88bedbbd8e2f916bc72553c491"
-  },
-  "churn-analysis": {
-    "repo": "Challenge-Alura-TelecomXBR",
-    "commit": "01207ec401833d0f8732bd3b1003b6dcb713ebdc"
   }
 }
