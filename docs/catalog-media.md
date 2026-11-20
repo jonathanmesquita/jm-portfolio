@@ -22,9 +22,9 @@ the source repository, how the media is made and the encoding window.
   recorded `.webm`. Small projects (`"viewport": "small"`) are recorded at 960×540 so the UI
   fills the frame; the rest at 1280×720. The video is cut from `video.start` for
   `video.duration` seconds; the poster is the screenshot named in `poster`.
-- **Notebooks** (`store-analysis`, `churn-analysis`) — the chart outputs embedded in the
-  `.ipynb` (base64 PNG), in order, become a slow-zoom slideshow (`secondsPerChart` each); the
-  first chart is the poster.
+- **Notebooks** — a title with `"kind": "notebook"` in `titles.json` becomes a slow-zoom
+  slideshow of the chart outputs embedded in the `.ipynb` (`secondsPerChart` each); the first
+  chart is the poster. No current title uses it.
 - **Arriba Platform** — poster and billboard are crops of the platform's own hero art
   (`arriba_platform/assets/img/capas-wallpaper-menus/arriba-hero-bg.webp`); the preview is the
   recorded site.

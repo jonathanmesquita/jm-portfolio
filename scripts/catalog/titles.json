@@ -98,22 +98,6 @@
         "duration": 7
       },
       "poster": "massa"
-    },
-    "store-analysis": {
-      "repo": "Challenge--Alura-Store",
-      "kind": "notebook",
-      "notebook": "Projeto/analise_lojas.ipynb",
-      "video": {
-        "secondsPerChart": 2.2
-      }
-    },
-    "churn-analysis": {
-      "repo": "Challenge-Alura-TelecomXBR",
-      "kind": "notebook",
-      "notebook": "ChallengeTelecomX_BR.ipynb",
-      "video": {
-        "secondsPerChart": 2.2
-      }
     }
   }
 }
