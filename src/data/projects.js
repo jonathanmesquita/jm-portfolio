@@ -181,9 +181,13 @@ export const projects = [
     year: "2026",
     status: "building",
     genres: ["web"],
-    description: "A distraction-free Pomodoro study timer connected to my Notion workflow.",
-    highlights: [],
-    stack: ["JavaScript", "Node.js", "Notion API"],
+    description:
+      "A small Pomodoro timer: 25 minutes of focus, 5 of break, switching on its own. Runs in the browser and inside Notion as an embed.",
+    highlights: [
+      "Keeps time from the phase's end time, so background tabs and embeds stay accurate",
+      "Timer rules in a DOM-free module with tests; no dependencies"
+    ],
+    stack: ["HTML", "CSS", "JavaScript", "localStorage"],
     links: { live: null, code: null },
     media: null
   }
