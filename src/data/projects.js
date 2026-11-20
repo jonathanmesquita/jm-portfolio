@@ -190,6 +190,23 @@ export const projects = [
     stack: ["HTML", "CSS", "JavaScript", "localStorage"],
     links: { live: "https://focus.jm.dev.br", code: `${GITHUB}/focus-jm` },
     media: { poster: "focus-jm", video: "focus-jm" }
+  },
+  {
+    slug: "nutri-jm",
+    title: "Nutri JM",
+    category: "Health / PWA",
+    year: "2026",
+    status: "building",
+    genres: ["web", "tool"],
+    description:
+      "A nutrition planner that works offline: daily energy needs, a calorie target and macro goals from your own profile, with meals, a food database, body measurements and a shopping list on the way. No login — data stays on the device.",
+    highlights: [
+      "Formulas in a DOM-free module with tests; never invents a nutritional value",
+      "Installable PWA with a strict Content Security Policy and no dependencies"
+    ],
+    stack: ["HTML", "CSS", "JavaScript", "PWA", "localStorage"],
+    links: { live: null, code: null },
+    media: null
   }
 ];
 
@@ -211,7 +228,7 @@ export const catalogRows = [
   {
     id: "more",
     title: "More projects",
-    items: ["focus-jm", "arriba-jump"]
+    items: ["nutri-jm", "focus-jm", "arriba-jump"]
   }
 ];
 

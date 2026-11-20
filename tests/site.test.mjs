@@ -7,6 +7,10 @@
  * dialog, deep links, filters), the language switch, every project page and
  * its social image, no horizontal scroll, no console errors, and axe finds
  * no WCAG A/AA violation in the main states.
+ *
+ * `vite preview` sends the production headers from vercel.json, so every page
+ * here runs under the real Content Security Policy; a blocked resource shows
+ * up as an error. Only the axe check bypasses it, to inject axe itself.
  */
 
 import { test, before, after } from "node:test";
@@ -36,10 +40,18 @@ after(async () => {
 });
 
 /* Opens a page and collects real errors (the analytics script only exists on Vercel). */
-async function open(url, { viewport = { width: 1440, height: 900 }, reducedMotion } = {}) {
-  const context = await browser.newContext({ viewport, reducedMotion });
+async function open(url, { viewport = { width: 1440, height: 900 }, reducedMotion, bypassCSP = false } = {}) {
+  const context = await browser.newContext({ viewport, reducedMotion, bypassCSP });
+  await context.addInitScript(() =>
+    document.addEventListener("securitypolicyviolation", (e) =>
+      console.error(`CSP blocked ${e.violatedDirective} ${e.blockedURI}`)
+    )
+  );
   const page = await context.newPage();
   const errors = [];
+  page.on("console", (message) => {
+    if (message.type() === "error" && message.text().startsWith("CSP")) errors.push(message.text());
+  });
   page.on("pageerror", (error) => errors.push(error.message));
   page.on("response", (response) => {
     if (response.status() >= 400 && !response.url().includes("/_vercel/")) {
@@ -59,6 +71,20 @@ async function axeViolations(page) {
     return result.violations.map((v) => `${v.id} (${v.nodes.length}): ${v.nodes[0].target.join(" ")}`);
   });
 }
+
+test("production headers are served, and no page breaks the Content Security Policy", async () => {
+  const response = await (await browser.newContext()).request.get(`${base}/`);
+  assert.match(response.headers()["content-security-policy"], /script-src 'self';/);
+  assert.equal(response.headers()["x-content-type-options"], "nosniff");
+
+  for (const url of ["/", "/#work/arriba-jump", "/pt/work/focus-jm/", "/work/nutri-jm/", "/#work/nutri-jm"]) {
+    const { page, errors, close } = await open(url);
+    await page.locator('[data-row="arriba-tools"] .title-card').first().hover().catch(() => {});
+    await page.waitForTimeout(800);
+    assert.deepEqual(errors, [], url);
+    await close();
+  }
+});
 
 test("home renders every row and title without errors", async () => {
   const { page, errors, close } = await open("/");
@@ -197,7 +223,7 @@ test("axe: no WCAG A/AA violations in the main states", async () => {
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
     for (const [url] of states) {
-      const { page, close } = await open(url, { viewport });
+      const { page, close } = await open(url, { viewport, bypassCSP: true });
       assert.deepEqual(await axeViolations(page), [], `${url} at ${viewport.width}px`);
       await close();
     }
