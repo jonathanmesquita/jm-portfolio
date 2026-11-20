@@ -179,8 +179,8 @@ export const projects = [
     title: "Focus JM",
     category: "Productivity / Notion",
     year: "2026",
-    status: "building",
-    genres: ["web"],
+    status: "live",
+    genres: ["web", "tool"],
     description:
       "A small Pomodoro timer: 25 minutes of focus, 5 of break, switching on its own. Runs in the browser and inside Notion as an embed.",
     highlights: [
@@ -188,8 +188,8 @@ export const projects = [
       "Timer rules in a DOM-free module with tests; no dependencies"
     ],
     stack: ["HTML", "CSS", "JavaScript", "localStorage"],
-    links: { live: null, code: null },
-    media: null
+    links: { live: "https://focus.jm.dev.br", code: `${GITHUB}/focus-jm` },
+    media: { poster: "focus-jm", video: "focus-jm" }
   }
 ];
 
@@ -209,9 +209,9 @@ export const catalogRows = [
     items: ["cnab-400", "csv-validator", "sql-playground", "sql-course", "web-editor", "dns-checker", "test-data"]
   },
   {
-    id: "soon",
-    title: "Unlocking soon",
-    items: ["focus-jm"]
+    id: "more",
+    title: "More projects",
+    items: ["focus-jm", "arriba-jump"]
   }
 ];
 

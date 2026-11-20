@@ -107,8 +107,13 @@ test("dialog opens, links to the project page and returns focus on Esc", async (
   await close();
 });
 
-test("locked titles show no links in the dialog", async () => {
-  const { page, close } = await open("/#work/focus-jm");
+test("locked titles show no links in the dialog", async (t) => {
+  const locked = projects.find((p) => p.status === "building");
+  if (!locked) {
+    t.skip("no locked title in the catalog right now");
+    return;
+  }
+  const { page, close } = await open(`/#work/${locked.slug}`);
   assert.ok(await page.locator("dialog.title-dialog").evaluate((d) => d.open));
   assert.equal(await page.locator(".dialog-actions a").count(), 0);
   assert.equal(await page.locator(".dialog-note").count(), 1);
@@ -186,7 +191,8 @@ test("axe: no WCAG A/AA violations in the main states", async () => {
     ["/?lang=pt", null],
     ["/#work/arriba", "dialog"],
     ["/work/arriba/", null],
-    ["/pt/work/focus-jm/", null]
+    ["/pt/work/focus-jm/", null],
+    ["/#work/focus-jm", "dialog"]
   ];
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {

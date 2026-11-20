@@ -653,7 +653,13 @@ export function mountCatalog(root, { initialLang = "en" } = {}) {
     grid = h("ul", { class: "catalog-grid", role: "list", hidden: true });
     status = h("p", { class: "visually-hidden", role: "status" });
 
-    chips = genreFilters.map((filter) =>
+    /* A filter with no matching title is not shown ("Unlocks soon" disappears
+       while nothing is locked, and comes back with the next locked title). */
+    const usefulFilters = genreFilters.filter(
+      (filter) => filter.id === "all" || projects.some((project) => matchesFilter(project, filter.id))
+    );
+
+    chips = usefulFilters.map((filter) =>
       h(
         "button",
         {

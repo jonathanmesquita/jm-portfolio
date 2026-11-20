@@ -96,6 +96,24 @@ export const jobs = {
     await page.goto(`${B}/arriba_platform/tools/dados/editor-web/editor-web.html`, { waitUntil: 'networkidle' }).catch(() => {});
     await wait(2500);
   },
+  /* Focus JM uses root-absolute paths (/assets/..., /favicon.ico); here it is served
+     under /focus-jm/, so those requests are redirected into the project folder. The
+     page clock is fast-forwarded so the video shows a focus → break switch. */
+  async focus(page) {
+    await page.route(/\/\/[^/]+\/(assets\/|favicon\.ico|manifest\.webmanifest)/, (route) => {
+      const u = new URL(route.request().url());
+      return route.continue({ url: `${u.origin}/focus-jm${u.pathname}` });
+    });
+    await page.clock.install();
+    await page.goto(`${B}/focus-jm/index.html`, { waitUntil: 'networkidle' });
+    await wait(1200);
+    await page.click('#iniciar');
+    await wait(1800);
+    await page.screenshot({ path: `${OUT}/focus.png` });
+    await page.clock.fastForward(25 * 60 * 1000 - 6000);
+    await wait(7500);
+    await wait(1500);
+  },
   async jump(page) {
     await page.goto(`${B}/arriba-jump/index.html`, { waitUntil: 'networkidle' });
     await wait(1500);
