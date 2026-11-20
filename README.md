@@ -237,3 +237,12 @@ A dedicated Lab section is intentionally postponed until there are experiments s
 Local production build passed. Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100. axe reported zero violations on mobile and desktop; npm audit reported zero vulnerabilities.
 
 See the QA reports: [v1.2.0](docs/QA-v1.2.0.md), [v1.1.0](docs/QA-v1.1.0.md), [v0.8.0](docs/QA-v0.8.0.md) for evidence, limitations and preview checks.
+
+## Security headers
+
+`vercel.json` sends a strict Content Security Policy — scripts, styles, fonts, images and
+video only from this site; no inline script — plus `nosniff`, `Referrer-Policy`,
+`Permissions-Policy`, `X-Frame-Options: SAMEORIGIN` and HSTS. `vite preview` reads the same
+file (`vite.config.js`), so the end-to-end tests run under the production policy and fail
+on any blocked resource. Adding anything from another origin (a font CDN, an embed) means
+allowing that origin in the right directive — never `'unsafe-inline'` or `*`.
