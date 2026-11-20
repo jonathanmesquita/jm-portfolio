@@ -105,6 +105,15 @@ export const projectsPt = {
       "Conta o tempo pela hora final da fase, então aba em segundo plano e embed não atrasam",
       "Regras do timer num módulo sem DOM, com testes; nenhuma dependência"
     ]
+  },
+  "nutri-jm": {
+    category: "Saúde / PWA",
+    description:
+      "Um planejador de dieta que funciona offline: gasto diário, meta calórica e metas de macronutrientes a partir do seu perfil, com refeições, banco de alimentos, medidas corporais e lista de compras a caminho. Sem login — os dados ficam no aparelho.",
+    highlights: [
+      "Fórmulas num módulo sem DOM, com testes; nunca inventa valor nutricional",
+      "PWA instalável, com política de segurança de conteúdo fechada e nenhuma dependência"
+    ]
   }
 };
 

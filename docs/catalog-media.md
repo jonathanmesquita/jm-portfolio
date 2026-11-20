@@ -30,7 +30,7 @@ the source repository, how the media is made and the encoding window.
   recorded site.
 - **Vite apps** — a title whose `titles.json` entry declares `build` and `"serve": "dist"` is
   built and served from its `dist/` on a second port. No current title needs it.
-- **Focus JM** — no media yet; the card renders a typographic placeholder.
+- **Nutri JM** — locked (in progress), no media yet; the card renders a typographic placeholder.
 
 ## When media is refreshed
 
