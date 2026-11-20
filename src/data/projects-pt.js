@@ -27,16 +27,6 @@ export const projectsPt = {
       "Interface em português, inglês, espanhol e francês"
     ]
   },
-  nexus: {
-    category: "História interativa",
-    description:
-      "Um livro-jogo autobiográfico em forma de web app: uma história de loop temporal contada por logs de sistema, arquivos colecionáveis e escolhas que ramificam.",
-    highlights: [
-      "Motor de narrativa ramificada guiado por nós de dados",
-      "Inventário, monitor de status e sistema de arquivos como recursos da história",
-      "Tipado com TypeScript e empacotado com Vite"
-    ]
-  },
   "cnab-400": {
     title: "Validador CNAB 400",
     category: "Arriba · Arquivo bancário",
@@ -121,39 +111,6 @@ export const projectsPt = {
       "Investiga por que clientes de uma operadora cancelam, cruzando dados de contrato, demográficos e de cobrança para achar padrões de evasão.",
     highlights: ["Limpeza e inspeção dos dados", "Análise de distribuição com Seaborn"]
   },
-  base64: {
-    title: "Decodificador Base64",
-    category: "Ferramenta pequena",
-    description: "Decodifica textos em Base64 no próprio navegador, sem servidor no meio."
-  },
-  "case-converter": {
-    title: "Conversor de maiúsculas e minúsculas",
-    category: "Ferramenta pequena",
-    description: "Converte texto para maiúsculas, minúsculas ou primeira letra maiúscula com um clique."
-  },
-  "csv-reader": {
-    title: "Leitor de CSV",
-    category: "Ferramenta pequena",
-    description:
-      "Abre um CSV no navegador e mostra como tabela. Refeito em 2026 com um parser RFC 4180 de verdade: campos entre aspas, aspas escapadas, separador e quebra de linha dentro do campo.",
-    highlights: [
-      "Reconhece ; ou , pela primeira linha, fora das aspas",
-      "Células escritas como texto, nunca como HTML",
-      "Mensagens claras para arquivo vazio, sem separador e linha com número errado de campos"
-    ]
-  },
-  "secret-friend": {
-    title: "Sorteio de amigo secreto",
-    category: "Desafio de curso",
-    description:
-      "Adicione os amigos e sorteie um nome. Um desafio de lógica em JavaScript do programa Oracle Next Education."
-  },
-  "profile-card": {
-    title: "Cartão de perfil 3D",
-    category: "Estudo de CSS",
-    description:
-      "Um cartão pessoal com efeito de inclinação que segue o cursor — um dos primeiros estudos de layout e movimento em CSS."
-  },
   "focus-jm": {
     category: "Produtividade / Notion",
     description: "Um timer Pomodoro para estudar sem distração, ligado ao meu fluxo no Notion."
@@ -163,9 +120,7 @@ export const projectsPt = {
 export const rowsPt = {
   top: "Destaques",
   "arriba-tools": "Por dentro da Arriba Platform",
-  games: "Jogos e histórias interativas",
   data: "Análise de dados com Python",
-  origins: "Onde tudo começou",
   soon: "Desbloqueia em breve"
 };
 

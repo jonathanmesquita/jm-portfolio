@@ -55,24 +55,6 @@ export const projects = [
     media: { poster: "arriba-jump", video: "arriba-jump" }
   },
   {
-    slug: "nexus",
-    title: "Project Nexus 2027",
-    category: "Interactive story",
-    year: "2026",
-    status: "building",
-    genres: ["game", "web"],
-    description:
-      "An autobiographical gamebook as a web app: a time-loop story told through system logs, collectible files and branching choices.",
-    highlights: [
-      "Branching narrative engine driven by data nodes",
-      "Inventory, status monitor and file system as story devices",
-      "Typed with TypeScript, bundled with Vite"
-    ],
-    stack: ["React", "TypeScript", "Vite"],
-    links: { live: null, code: `${GITHUB}/nexus2027` },
-    media: { poster: "nexus", video: "nexus" }
-  },
-  {
     slug: "cnab-400",
     title: "CNAB 400 Validator",
     category: "Arriba · Bank files",
@@ -221,79 +203,6 @@ export const projects = [
     media: { poster: "churn-analysis", video: "churn-analysis" }
   },
   {
-    slug: "base64",
-    title: "Base64 Decoder",
-    category: "Small tool",
-    year: "2025",
-    status: "live",
-    genres: ["tool"],
-    description: "Decodes Base64 strings locally in the browser, with no server involved.",
-    highlights: [],
-    stack: ["JavaScript", "HTML", "CSS"],
-    links: { live: "https://jonathanmesquita.github.io/DecodificacaoBase64/", code: `${GITHUB}/DecodificacaoBase64` },
-    media: { poster: "base64", video: "base64" }
-  },
-  {
-    slug: "case-converter",
-    title: "Case Converter",
-    category: "Small tool",
-    year: "2025",
-    status: "archive",
-    genres: ["tool"],
-    description: "Converts text to upper case, lower case or sentence case in one click.",
-    highlights: [],
-    stack: ["JavaScript", "HTML", "CSS"],
-    links: { live: null, code: `${GITHUB}/convertor-maiusculas-minusculas` },
-    media: { poster: "case-converter", video: "case-converter" }
-  },
-  {
-    slug: "csv-reader",
-    title: "CSV Reader",
-    category: "Small tool",
-    year: "2025 — 2026",
-    status: "archive",
-    genres: ["tool", "data"],
-    description:
-      "Opens a CSV in the browser and shows it as a table. Rebuilt in 2026 with a real RFC 4180 parser: quoted fields, escaped quotes, separators and line breaks inside a field.",
-    highlights: [
-      "Detects ; or , from the first line, outside quotes",
-      "Cells written as text, never as HTML",
-      "Clear messages for empty files, missing separators and rows with the wrong number of fields"
-    ],
-    stack: ["JavaScript", "RFC 4180", "HTML", "CSS"],
-    links: { live: null, code: `${GITHUB}/leitor-csv` },
-    media: { poster: "csv-reader", video: "csv-reader" }
-  },
-  {
-    slug: "secret-friend",
-    title: "Secret Friend Draw",
-    category: "Course challenge",
-    year: "2025",
-    status: "live",
-    genres: ["game", "web"],
-    description: "Add friends, draw a name. A JavaScript logic challenge from the Oracle Next Education program.",
-    highlights: [],
-    stack: ["JavaScript", "HTML", "CSS"],
-    links: {
-      live: "https://jonathanmesquita.github.io/challenge-amigo-secreto/",
-      code: `${GITHUB}/challenge-amigo-secreto`
-    },
-    media: { poster: "secret-friend", video: "secret-friend" }
-  },
-  {
-    slug: "profile-card",
-    title: "3D Profile Card",
-    category: "CSS study",
-    year: "2024",
-    status: "live",
-    genres: ["web"],
-    description: "A personal card with a tilt effect that follows the cursor — an early study in CSS layout and motion.",
-    highlights: [],
-    stack: ["CSS", "JavaScript", "Vanilla Tilt"],
-    links: { live: "https://jonathanmesquita.github.io/cartao_mesquita/", code: `${GITHUB}/cartao_mesquita` },
-    media: { poster: "profile-card", video: "profile-card" }
-  },
-  {
     slug: "focus-jm",
     title: "Focus JM",
     category: "Productivity / Notion",
@@ -324,24 +233,14 @@ export const catalogRows = [
     items: ["cnab-400", "csv-validator", "sql-playground", "sql-course", "web-editor", "dns-checker", "test-data"]
   },
   {
-    id: "games",
-    title: "Games & interactive stories",
-    items: ["arriba-jump", "nexus", "secret-friend"]
-  },
-  {
     id: "data",
     title: "Data analysis with Python",
     items: ["store-analysis", "churn-analysis", "sql-course"]
   },
   {
-    id: "origins",
-    title: "Where it started",
-    items: ["base64", "case-converter", "csv-reader", "secret-friend", "profile-card"]
-  },
-  {
     id: "soon",
     title: "Unlocking soon",
-    items: ["focus-jm", "nexus"]
+    items: ["focus-jm"]
   }
 ];
 

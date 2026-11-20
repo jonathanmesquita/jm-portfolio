@@ -95,7 +95,7 @@ test("hovering a live title plays its preview; locked titles have none", async (
 test("dialog opens, links to the project page and returns focus on Esc", async () => {
   const { page, close } = await open("/");
 
-  const card = page.locator('[data-row="games"] .title-card[data-slug="arriba-jump"]');
+  const card = page.locator('[data-row="top"] .title-card[data-slug="arriba-jump"]');
   await card.click();
   assert.ok(await page.locator("dialog.title-dialog").evaluate((d) => d.open));
   assert.equal(await page.evaluate(() => location.hash), "#work/arriba-jump");
@@ -108,7 +108,7 @@ test("dialog opens, links to the project page and returns focus on Esc", async (
 });
 
 test("locked titles show no links in the dialog", async () => {
-  const { page, close } = await open("/#work/nexus");
+  const { page, close } = await open("/#work/focus-jm");
   assert.ok(await page.locator("dialog.title-dialog").evaluate((d) => d.open));
   assert.equal(await page.locator(".dialog-actions a").count(), 0);
   assert.equal(await page.locator(".dialog-note").count(), 1);
@@ -186,7 +186,7 @@ test("axe: no WCAG A/AA violations in the main states", async () => {
     ["/?lang=pt", null],
     ["/#work/arriba", "dialog"],
     ["/work/arriba/", null],
-    ["/pt/work/nexus/", null]
+    ["/pt/work/focus-jm/", null]
   ];
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 375, height: 812 }]) {
