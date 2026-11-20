@@ -99,7 +99,12 @@ export const projectsPt = {
   },
   "focus-jm": {
     category: "Produtividade / Notion",
-    description: "Um timer Pomodoro para estudar sem distração, ligado ao meu fluxo no Notion."
+    description:
+      "Um timer Pomodoro pequeno: 25 minutos de foco, 5 de pausa, alternando sozinho. Funciona no navegador e dentro do Notion como embed.",
+    highlights: [
+      "Conta o tempo pela hora final da fase, então aba em segundo plano e embed não atrasam",
+      "Regras do timer num módulo sem DOM, com testes; nenhuma dependência"
+    ]
   }
 };
 
