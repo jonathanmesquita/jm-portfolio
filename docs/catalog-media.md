@@ -28,8 +28,8 @@ the source repository, how the media is made and the encoding window.
 - **Arriba Platform** — poster and billboard are crops of the platform's own hero art
   (`arriba_platform/assets/img/capas-wallpaper-menus/arriba-hero-bg.webp`); the preview is the
   recorded site.
-- **Nexus** — a Vite app: `update.mjs` runs the `build` command from `titles.json` and serves
-  its `dist/` on a second port.
+- **Vite apps** — a title whose `titles.json` entry declares `build` and `"serve": "dist"` is
+  built and served from its `dist/` on a second port. No current title needs it.
 - **Focus JM** — no media yet; the card renders a typographic placeholder.
 
 ## When media is refreshed
@@ -69,7 +69,7 @@ starts from the lock on the default branch and records the same titles again.
 ```bash
 node scripts/catalog/update.mjs                 # same as --changed
 node scripts/catalog/update.mjs --all           # every title
-node scripts/catalog/update.mjs base64 nexus    # just these, changed or not
+node scripts/catalog/update.mjs arriba-jump cnab-400    # just these, changed or not
 node scripts/catalog/update.mjs --dry-run       # what would be recorded
 ```
 
@@ -105,5 +105,4 @@ for machines where the CDN is blocked.
    the title is printed over the bottom 60%. Commit the media together with
    `sources.lock.json`.
 
-Data in a capture is always fictional (the CSV in `scripts/catalog/sample.csv`, the names in
-the secret-friend draw).
+Data in a capture is always fictional (for example, the CSV in `scripts/catalog/sample.csv`).
