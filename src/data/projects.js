@@ -26,7 +26,7 @@ export const projects = [
     description:
       "A study platform of technical tools born from real support problems: file validators, test-data generators, a SQL sandbox with a course, a live-preview editor and an AI chat. Every tool runs in the browser — no file leaves the machine.",
     highlights: [
-      "CNAB 400 bank-file engine for three banks, with reader, generator and trailer check",
+      "CNAB 400 bank-file engine for five bank layouts, plus CNAB 240 for two, with reader, generator and trailer check",
       "RFC 4180 CSV parser kept separate from the content rules",
       "Private Node.js API behind HttpOnly cookie login",
       "Both themes checked for WCAG contrast on every pull request"
@@ -199,7 +199,7 @@ export const projects = [
     status: "building",
     genres: ["web", "tool"],
     description:
-      "A nutrition planner that works offline: daily energy needs, a calorie target and macro goals from your own profile, with meals, a food database, body measurements and a shopping list on the way. No login — data stays on the device.",
+      "A nutrition planner that works offline: daily energy needs, a calorie target and macro goals from your own profile, with meals, a food database from the Brazilian TACO table, body measurements, a shopping list and JSON backup. No login — data stays on the device.",
     highlights: [
       "Formulas in a DOM-free module with tests; never invents a nutritional value",
       "Installable PWA with a strict Content Security Policy and no dependencies"
@@ -218,7 +218,7 @@ export const catalogRows = [
     id: "top",
     title: "Top picks",
     ranked: true,
-    items: ["arriba", "arriba-jump", "cnab-400", "sql-playground"]
+    items: ["arriba", "focus-jm", "cnab-400", "sql-playground"]
   },
   {
     id: "arriba-tools",
@@ -228,7 +228,7 @@ export const catalogRows = [
   {
     id: "more",
     title: "More projects",
-    items: ["nutri-jm", "focus-jm", "arriba-jump"]
+    items: ["nutri-jm", "arriba-jump"]
   }
 ];
 
