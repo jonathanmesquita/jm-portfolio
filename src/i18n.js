@@ -47,6 +47,8 @@ const PT = {
     "Essa experiência me ensinou a olhar além da interface, entender o que está falhando e focar em soluções práticas.",
   "Today I bring that perspective into software development, building web products with JavaScript, Node.js, SQL and APIs.":
     "Hoje levo essa perspectiva para o desenvolvimento de software, construindo produtos web com JavaScript, Node.js, SQL e APIs.",
+  "Pixel art and game development are creative hobbies of mine.":
+    "Pixel art e desenvolvimento de jogos são hobbies criativos meus.",
   Location: "Localização",
   "São Paulo — Brazil": "São Paulo — Brasil",
   Focus: "Foco",
