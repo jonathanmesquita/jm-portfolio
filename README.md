@@ -4,7 +4,7 @@ Professional developer portfolio for **Jonathan Mesquita**, focused on software 
 
 Current version: **v1.3.0**
 
-Last update: **2026.11.20**
+Last update: **2026.11.21**
 
 ## Objective
 
@@ -27,15 +27,20 @@ Projects are presented like a streaming catalog:
 - **Genre filters** — All, Live now, Tools, Games, Data, Unlocks soon.
 - **Rows** that scroll sideways: Top picks, Inside Arriba Platform, More projects.
 - **Title cards** that play a silent preview on hover or keyboard focus.
-- **Locked titles** — projects still being built (none right now) show a blurred
+- **Locked titles** — projects still being built (Nutri JM right now) show a blurred
   poster with a padlock and "Unlocks soon": no preview, no links. Changing `status` from
   `"building"` to `"live"` in `src/data/projects.js` unlocks them.
 - **Details dialog** with a looping preview, highlights, stack, live and code links, and
   "More like this". Every title has a shareable link: `jm.dev.br/#work/<slug>`.
 
-10 titles, declared once in `src/data/projects.js`. Posters and previews are recorded from the
+11 titles, declared once in `src/data/projects.js`. Posters and previews are recorded from the
 real projects — see [docs/catalog-media.md](docs/catalog-media.md). Videos load only when a
 preview starts, and nothing autoplays with reduced motion or Save-Data.
+
+Catalog order follows my project priorities: "Top picks" holds the flagship (Arriba Platform), the
+finished small product (Focus JM) and the two strongest Arriba tools as evidence; games and
+side projects stay in "More projects". A title lives in one row, except CNAB 400 and SQL
+Playground, which also sit in "Inside Arriba Platform" on purpose.
 
 Highlights:
 
@@ -223,10 +228,28 @@ jm-portfolio/
 - `v1.2.0` — Case studies, project pages with social images, Portuguese version, analytics,
   end-to-end tests in CI, automatic media refresh, CSV Reader
 - `v1.3.0` — Focus JM released; leaner catalog after removing deleted study repositories
+- **Unreleased** (branch `claude/portfolio-revision-10pho1`) — content checked against the
+  repositories (159 tests, five CNAB 400 layouts plus CNAB 240, Nutri JM text); Focus JM in
+  "Top picks" and Arriba Jump out of it; a one-line note on pixel art and game development in
+  About. No version bump yet.
 
 ## Roadmap
 
 Post-v1 improvements will focus on stronger case studies, production-ready projects and measured improvements to the portfolio experience.
+
+Open items, in order:
+
+- [ ] **Unlock Nutri JM** only after it is tagged `v1.0.0` and checked in production
+  (change `status` to `"live"` and add its links and media; see
+  [docs/catalog-media.md](docs/catalog-media.md)).
+- [ ] **Re-count "17 tools"** in the Arriba case study. The number could not be reproduced from
+  the repository; it needs a written counting rule (for example, every screen the Arriba menu
+  lists) before it is stated again.
+- [ ] **Decide the headline role.** `<title>` and metadata say "Full-Stack Developer"; About says
+  "Focus: Front-end → Full Stack". Pick one wording the site can prove.
+- [ ] **Short case study for Focus JM**, the small, finished product.
+- [ ] A link to Play in About, only when `play.jm.dev.br` exists.
+- [ ] Client Work / Business Case, only after a client site is published and the client agrees.
 
 A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.
 

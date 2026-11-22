@@ -10,7 +10,7 @@ export const projectsPt = {
     description:
       "Uma plataforma de estudos com ferramentas técnicas que nasceram de problemas reais de suporte: validadores de arquivo, geradores de dados de teste, um sandbox de SQL com curso, um editor com preview ao vivo e um chat com IA. Tudo roda no navegador — nenhum arquivo sai da máquina.",
     highlights: [
-      "Motor de arquivo bancário CNAB 400 para três bancos, com leitura, geração e conferência do trailer",
+      "Motor de arquivo bancário CNAB 400 com cinco layouts de banco, mais CNAB 240 para dois, com leitura, geração e conferência do trailer",
       "Parser de CSV RFC 4180 separado das regras de conteúdo",
       "API privada em Node.js com login por cookie HttpOnly",
       "Contraste WCAG conferido nos dois temas em todo pull request"
@@ -109,7 +109,7 @@ export const projectsPt = {
   "nutri-jm": {
     category: "Saúde / PWA",
     description:
-      "Um planejador de dieta que funciona offline: gasto diário, meta calórica e metas de macronutrientes a partir do seu perfil, com refeições, banco de alimentos, medidas corporais e lista de compras a caminho. Sem login — os dados ficam no aparelho.",
+      "Um planejador de dieta que funciona offline: gasto diário, meta calórica e metas de macronutrientes a partir do seu perfil, com refeições, banco de alimentos da tabela TACO, medidas corporais, lista de compras e backup em JSON. Sem login — os dados ficam no aparelho.",
     highlights: [
       "Fórmulas num módulo sem DOM, com testes; nunca inventa valor nutricional",
       "PWA instalável, com política de segurança de conteúdo fechada e nenhuma dependência"

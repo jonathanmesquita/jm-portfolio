@@ -121,7 +121,7 @@ test("hovering a live title plays its preview; locked titles have none", async (
 test("dialog opens, links to the project page and returns focus on Esc", async () => {
   const { page, close } = await open("/");
 
-  const card = page.locator('[data-row="top"] .title-card[data-slug="arriba-jump"]');
+  const card = page.locator('[data-row="more"] .title-card[data-slug="arriba-jump"]');
   await card.click();
   assert.ok(await page.locator("dialog.title-dialog").evaluate((d) => d.open));
   assert.equal(await page.evaluate(() => location.hash), "#work/arriba-jump");
