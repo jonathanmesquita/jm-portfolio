@@ -24,7 +24,7 @@ const PT = {
   Experience: "Experiência",
   Capabilities: "Competências",
   Contact: "Contato",
-  "Full-stack developer": "Desenvolvedor full-stack",
+  "Software developer": "Desenvolvedor de software",
   "Open to opportunities": "Aberto a oportunidades",
   "Support taught me": "O suporte me ensinou",
   "where software breaks.": "onde o software quebra.",
