@@ -1,42 +1,42 @@
 {
   "arriba": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "arriba-jump": {
     "repo": "arriba-jump",
-    "commit": "a84382fa53c2117d79b1c010e9e76eedeae7c77c"
+    "commit": "0374f0f6c14d867e95bebcf235ac43d193da0ac5"
   },
   "cnab-400": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "csv-validator": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "sql-playground": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "sql-course": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "web-editor": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "dns-checker": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "test-data": {
     "repo": "arriba_platform",
-    "commit": "f532f7bc5cdf90e99cd544e47da59cf85a5d5666"
+    "commit": "73a72eb797f31ef1886295a1da994ca93e6808f0"
   },
   "focus-jm": {
     "repo": "focus-jm",
-    "commit": "a2b5f583c764b0441a5fc644a76a6d9c7be7e6c1"
+    "commit": "c987597adf8db6cb7244be57f6e4bfcb62691572"
   }
 }
