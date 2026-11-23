@@ -156,6 +156,21 @@ test("filters switch rows to a grid of matching titles", async () => {
   await close();
 });
 
+test("the headline role is Software Developer in the title, metadata, schema and hero, in both languages", async () => {
+  const { page, close } = await open("/");
+  assert.equal(await page.title(), "Jonathan Mesquita | Software Developer");
+  for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
+    assert.equal(await page.getAttribute(selector, "content"), "Jonathan Mesquita | Software Developer", selector);
+  }
+  const schema = JSON.parse(await page.textContent('script[type="application/ld+json"]'));
+  assert.equal(schema.jobTitle, "Software Developer");
+  assert.equal((await page.textContent(".hero-meta span:first-child")).trim(), "Software developer");
+
+  await page.evaluate(() => document.querySelector("#lang-switch").click());
+  assert.equal((await page.textContent(".hero-meta span:first-child")).trim(), "Desenvolvedor de software");
+  await close();
+});
+
 test("language switch translates the page and keeps an open dialog", async () => {
   const { page, close } = await open("/#work/arriba-jump");
 
@@ -169,6 +184,19 @@ test("language switch translates the page and keeps an open dialog", async () =>
   await page.click("#lang-switch");
   assert.equal(await page.evaluate(() => document.documentElement.lang), "en");
   assert.match(await page.textContent(".hero-line-primary"), /Support taught me/);
+  await close();
+});
+
+test("About links to Play, in both languages", async () => {
+  const { page, close } = await open("/");
+  const link = page.locator("a.about-link");
+  assert.equal(await link.getAttribute("href"), "https://play.jm.dev.br");
+  assert.equal(await link.getAttribute("rel"), "noopener noreferrer");
+  assert.match(await link.textContent(), /See the games on Play/);
+
+  await page.evaluate(() => document.querySelector("#lang-switch").click());
+  assert.match(await link.textContent(), /Veja os jogos no Play/);
+  assert.equal(await link.getAttribute("href"), "https://play.jm.dev.br", "the link survives the translation");
   await close();
 });
 

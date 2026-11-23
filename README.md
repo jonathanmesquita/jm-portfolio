@@ -231,7 +231,9 @@ jm-portfolio/
 - **Unreleased** (branch `claude/portfolio-revision-10pho1`) — content checked against the
   repositories (159 tests, five CNAB 400 layouts plus CNAB 240, Nutri JM text); Focus JM in
   "Top picks" and Arriba Jump out of it; a one-line note on pixel art and game development in
-  About. No version bump yet.
+  About, with a link to Play; the headline role is now **Software Developer** (title, metadata,
+  schema, hero and the home social image); the Arriba case study states what "17 tools" counts.
+  No version bump yet.
 
 ## Roadmap
 
@@ -242,13 +244,7 @@ Open items, in order:
 - [ ] **Unlock Nutri JM** only after it is tagged `v1.0.0` and checked in production
   (change `status` to `"live"` and add its links and media; see
   [docs/catalog-media.md](docs/catalog-media.md)).
-- [ ] **Re-count "17 tools"** in the Arriba case study. The number could not be reproduced from
-  the repository; it needs a written counting rule (for example, every screen the Arriba menu
-  lists) before it is stated again.
-- [ ] **Decide the headline role.** `<title>` and metadata say "Full-Stack Developer"; About says
-  "Focus: Front-end → Full Stack". Pick one wording the site can prove.
 - [ ] **Short case study for Focus JM**, the small, finished product.
-- [ ] A link to Play in About, only when `play.jm.dev.br` exists.
 - [ ] Client Work / Business Case, only after a client site is published and the client agrees.
 
 A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.

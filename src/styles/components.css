@@ -415,6 +415,19 @@
   align-self: end;
 }
 
+/* Link do Play: --color-clay-text sobre o canvas dá 5,05 (mínimo 4,5); sublinhado, não só cor. */
+.about-link {
+  color: var(--color-clay-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+}
+
+.about-link:hover {
+  color: var(--color-ink);
+}
+
 .about-content > p {
   max-width: 38rem;
 
