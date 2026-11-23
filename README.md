@@ -242,13 +242,15 @@ Open items, in order:
 - [ ] **Unlock Nutri JM** only after it is tagged `v1.0.0` and checked in production
   (change `status` to `"live"` and add its links and media; see
   [docs/catalog-media.md](docs/catalog-media.md)).
-- [ ] **Re-count "17 tools"** in the Arriba case study. The number could not be reproduced from
-  the repository; it needs a written counting rule (for example, every screen the Arriba menu
-  lists) before it is stated again.
+- [ ] **State the counting rule for "17 tools"** in the Arriba case study. The number holds under
+  one rule, counted from `assets/js/navigation-v2.js` in `arriba_platform` on 2026-11-23: the
+  "Ferramentas" menu lists 18 screens, one of them ("Validar e consultar pela API") needs a
+  login, so **17 are open to any visitor**. Confirm that rule, then say it in the text ("17
+  browser tools open to every visitor"). Counting the files in `tools/` gives 20, which includes
+  a documentation page and the restricted screen, so it is not the same thing.
 - [ ] **Decide the headline role.** `<title>` and metadata say "Full-Stack Developer"; About says
   "Focus: Front-end → Full Stack". Pick one wording the site can prove.
 - [ ] **Short case study for Focus JM**, the small, finished product.
-- [ ] A link to Play in About, only when `play.jm.dev.br` exists.
 - [ ] Client Work / Business Case, only after a client site is published and the client agrees.
 
 A dedicated Lab section is intentionally postponed until there are experiments strong enough to support the professional portfolio.

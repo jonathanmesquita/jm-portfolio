@@ -49,6 +49,7 @@ const PT = {
     "Hoje levo essa perspectiva para o desenvolvimento de software, construindo produtos web com JavaScript, Node.js, SQL e APIs.",
   "Pixel art and game development are creative hobbies of mine.":
     "Pixel art e desenvolvimento de jogos são hobbies criativos meus.",
+  "See the games on Play →": "Veja os jogos no Play →",
   Location: "Localização",
   "São Paulo — Brazil": "São Paulo — Brasil",
   Focus: "Foco",

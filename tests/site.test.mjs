@@ -172,6 +172,19 @@ test("language switch translates the page and keeps an open dialog", async () =>
   await close();
 });
 
+test("About links to Play, in both languages", async () => {
+  const { page, close } = await open("/");
+  const link = page.locator("a.about-link");
+  assert.equal(await link.getAttribute("href"), "https://play.jm.dev.br");
+  assert.equal(await link.getAttribute("rel"), "noopener noreferrer");
+  assert.match(await link.textContent(), /See the games on Play/);
+
+  await page.evaluate(() => document.querySelector("#lang-switch").click());
+  assert.match(await link.textContent(), /Veja os jogos no Play/);
+  assert.equal(await link.getAttribute("href"), "https://play.jm.dev.br", "the link survives the translation");
+  await close();
+});
+
 test("reduced motion: nothing autoplays", async () => {
   const { page, close } = await open("/#work/arriba-jump", { reducedMotion: "reduce" });
   const video = await page.locator(".dialog-video").evaluate((v) => ({ autoplay: v.autoplay, controls: v.controls }));
