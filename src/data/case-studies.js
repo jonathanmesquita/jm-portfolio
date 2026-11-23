@@ -38,7 +38,7 @@ export const caseStudies = {
         }
       ],
       result: [
-        "17 tools across files, data, code, SQL and networking, live at arriba.jm.dev.br.",
+        "17 browser tools open to every visitor, across files, data, code, SQL and networking, live at arriba.jm.dev.br.",
         "159 automated tests for the parsers and engines, plus the contrast check, run on every pull request.",
         "16 architecture decisions written down as ADRs, each with the alternative that was rejected.",
         "A private Node.js API for the few features that need a server, behind HttpOnly cookie login — no secret in the public site."
@@ -75,7 +75,7 @@ export const caseStudies = {
         }
       ],
       result: [
-        "17 ferramentas de arquivos, dados, código, SQL e rede, no ar em arriba.jm.dev.br.",
+        "17 ferramentas no navegador, abertas a qualquer visitante, de arquivos, dados, código, SQL e rede, no ar em arriba.jm.dev.br.",
         "159 testes automatizados dos parsers e motores, mais a conferência de contraste, rodando em todo pull request.",
         "16 decisões de arquitetura registradas como ADRs, cada uma com a alternativa que foi rejeitada.",
         "Uma API privada em Node.js para o pouco que precisa de servidor, com login por cookie HttpOnly — nenhum segredo no site público."
